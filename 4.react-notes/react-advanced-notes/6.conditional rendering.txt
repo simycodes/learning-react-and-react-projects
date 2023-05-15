@@ -1,0 +1,69 @@
+Conditional rendering is the process of displaying certain components-content basic on certain
+conditions,being met or not yet met.
+
+A component function must always return something or else there will be an error.
+A component can have multiple returns that are based on certain conditions-conditional rendering.
+It is inside a component that conditional rendering is implemented by having several returns under
+if-else statmenets.
+
+General Basic example of a Component implementing conditional rendering
+
+const MultipleReturns = () => {
+  const [loading, setLoading] = useState(true);
+
+  if(loading){
+    return (
+      <h2>Loading..</h2>
+       // a whole application can be set here,under this condition-if
+    )
+  }
+  
+  return <h2>multiple returns</h2>;
+  // a whole application can be set hereunder this condition-which else by default
+};
+
+NOTE ON CONDITIONAL RENDERING
+dont use if-else but OR,AND and ternary operators inside return() of components.
+Use if-else outside of the components return(),and place various returns in each if-else 
+
+const ShortCircuit = () => {
+  const [text, setText] = useState("Peter");
+  const [isError, setIsError] = useState(false);
+  // Initialize to text if its set/true,else initialize to hello world
+  const firstValue = text || 'hello world';
+  // Initialize to hello world only when text is true/set
+  const secondValue = text && 'hello world';
+
+  return (
+    <>
+     <h1>{text || "Jon Doe"}</h1> 
+     {isError && <h1>Error....</h1>}
+     {isError? <p>There is an error..</p>:<p>No Error</p>}
+     <button className='btn' onClick={()=>setIsError(!isError)}>Toggle Error</button>
+
+	 <p>
+          { readMore?info:`${info.substring(0,200)}...` } 
+          <button onClick={()=> setReadMore(!readMore)}>{readMore?'Show less':'Read More'}</button>
+       </p>
+   <>
+  )
+
+}
+
+
+ANOTHER EXAMPLE - with interpolation
+{
+ // index is coming from the list in the jobs array
+    jobs.map((job, index)=>{
+      return (
+       <button key={job.id} onClick={()=> setValue(index)} className={`job-btn ${index === value && 'active-btn'}`}>
+           {job.company}
+         </button>
+              )
+            })
+           }
+
+THIS CANT BE DONE INSIDE A RETURN OF A COMPONENT
+return(
+   if(user){console.log(user}
+)

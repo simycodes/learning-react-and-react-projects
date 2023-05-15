@@ -1,0 +1,49 @@
+A useRef is similar to a useState in preserving values of variables they are initialised to but useRef variables do not
+trigger a re-render of an app.
+
+And a useRef connects to - targets DOM elements.
+
+// useRef can be said to a getElementByRef(); & ref being the useRef variable name, which
+// will also hold the element connected to/referenced to.
+
+
+TO USE A useRef
+
+1.make a useRef variable using the useRef() hook
+	const refDiv = useRef(null);
+
+2.connect the useRef variable using the ref attribute to the element being referenced or copied-connected
+		<div ref={refDiv}>Hello World</div>
+
+3.Then use the useRef variable to get the element and its value/innerHTML
+	console.log(refDiv.current); // <div ref={refDiv}>Hello World</div>
+      console.log(refDiv.current.innerHTML); // Hello World
+
+EXAMPLE
+
+const UseRefBasics = () => {
+  const refContainer = useRef(null); // refContainer can now hold any entire element it is connected to
+  const refDiv = useRef(null);       
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(refContainer.current);
+      console.log(refContainer.current.value);
+
+      console.log(refDiv.current);
+      console.log(refDiv.current.innerHTML);
+  }
+
+return <>
+    <form className="form" onSubmit={handleSubmit}>
+      <div>
+        <input type='text' ref={refContainer}/>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <div ref={refDiv}>Hello World</div>
+  </>;
+};
+
+}

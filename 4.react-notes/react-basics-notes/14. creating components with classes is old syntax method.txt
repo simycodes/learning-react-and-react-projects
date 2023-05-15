@@ -1,0 +1,2 @@
+Creating components with classes is old syntax way,instead makes sure of
+functions that have captilaised Names when creating components.

@@ -1,0 +1,13 @@
+components to be rendered alwasy needs to have the closing tag,even if
+certain elements in HTML like image dont use this,a component containing an image
+will have to have a closing tag.
+
+function Greeting() {
+  return <h4>This is my first component</h4>;
+}
+
+ReactDom.render(<Greeting/>, document.getElementById('root'));
+
+OR
+
+ReactDom.render(<Greeting></Greeting/>, document.getElementById('root'));

@@ -1,0 +1,35 @@
+// CHANGING OBJECT KEYS EXAMPLE
+const state = {
+    loading: true,
+    name: '',
+    job: ''
+}
+
+console.log(state);
+
+// Function to update values of object keys of dynamically - changing value of name which
+// is '' to 'Simon' and job which is '' to 'developer'
+function updateState (key, value){
+    // state[key] = value;
+    // state.key = value; // dot notation can not change object key values dynamically..
+    // Looping through abject keys requires use of bracket notation to changes corresponding values
+}
+
+updateState('name', 'Simon'); // changing value of name to Simon
+updateState('job', 'Developer'); // changing value of job to Developer
+console.log(state);
+
+---------
+
+Putting name inside [] makes name as property of object to change values of an object dynamically - changes object
+property to a dynamic property to perform dynamic updates
+
+
+const handleChange = (e) => {
+    const name  = e.target.name; // name attribute in input element of form
+    const value = e.target.value; // value attribute in input element of form
+    console.log(name, value);
+    setPerson( {...person, [name]: value} );
+    // putting name inside [] makes name as property of object to change values
+    // of an object dynamically - changes object property to a dynamic property to perform dynamic updates
+  }

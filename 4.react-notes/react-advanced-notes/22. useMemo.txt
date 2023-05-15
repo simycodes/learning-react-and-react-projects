@@ -1,0 +1,15 @@
+useMemo checks for changes in values and not props or functions.useMemo catches memory / holds memory of last value and
+checks for its changes.
+
+useMemo catches values  obtained from functions defined outside of a component that may take a bit of time to generate
+a value needed for use by the component.Instead of making the function do the process again which may take some time,
+useMemo catches that value and when ever that function is called, useMemo provides the value needed and only calls
+the actual function when the function arguments change, if its same argument then useMemo gives the catched value.
+
+useMemo takes in the function whose value will be cached as the argument and has a dependancy value - which the 
+argument to the function given as the argument.The function will only be called if the dependancy which is the argument
+to the function changes.
+
+const mostExpensive = useMemo(() => calculateMostExpensive(products), [
+    products,
+  ])

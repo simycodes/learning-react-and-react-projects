@@ -1,0 +1,63 @@
+https://javascript.plainenglish.io/react-router-how-to-use-the-useparams-hook-321a6461732?gi=04da9a1654b0&source=user_profile---------10----------------------------
+
+import { useParams } from 'react-router-dom';
+
+The useParams hook returns an object of key/value pairs of the dynamic params from the current URL that were matched 
+by the <Route path> .
+
+useParams holds the key value pairs passed in react Links which are html a links in pure HTML.
+useParams works like php code below (INPUT_GET) when getting data that is passed through the url.
+
+$action = filter_input(INPUT_GET,'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+EQUIVALENT TO
+
+const { articleId } = useParams();   -- useParams() working as INPUT_GET() when geting data passed in URL
+console.log(articleId); // 123
+
+{articleId} as $action
+
+
+in detail
+
+$action = trim(filter_input(INPUT_POST,'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS)); 
+if ($action == NULL) {
+    $action = trim(filter_input(INPUT_GET,'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+}
+
+
+The useParams() hook is a React Router hook that allows you to access the parameters of the current URL. 
+The useParams() hook returns an object that contains the parameters of the current URL. For example, if you have
+a Route like so:
+
+<Route path=”/articles/:articleId” />
+
+And the URL is:
+/articles/123
+
+The useParams() hook will return an object with a key of articleId and a value of 123. 
+You can access the values of the URL parameters by destructuring the object returned by useParams(). 
+
+For example:
+
+const { articleId } = useParams();
+console.log(articleId); // 123
+
+Once the id is used to get a single page for a item content, then that id can used to request a specific item
+in the data(array of objects / in the database just like in php) to get all details of a single item.
+This functionality is used put in a useEffect hook after all page content is loaded fast and well,then the fetched data
+is put in the page for the single display.
+
+useEffect(() => {
+    const newPerson = data.find((person) => person.id === parseInt(id));
+    setName(newPerson.name);
+// The newPerson here contains data for a single person that is then used for a single display after is success search and'
+// and retrieval!
+  }, []);
+
+You can then use the articleId parameter to dynamically render content in your component.
+
+
+:id IS THE PARAM HERE - children contains element to naviaget to with a given param
+<Route path='/person/:id' children={<Person />}></Route>
+ 

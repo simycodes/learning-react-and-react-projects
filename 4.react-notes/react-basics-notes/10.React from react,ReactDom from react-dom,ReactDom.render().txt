@@ -1,0 +1,14 @@
+//importing/getting react into this document
+import React from 'react';
+import ReactDom from 'react-dom';
+
+- React is imported into a document from react depedancy,that contains necesary files to develop
+and run a react app.
+
+- react-dom package containes the main method that is used to render react components called
+render()
+
+- render() - gets uses two arguments,the component to be rendered and the file destination in which
+the component will be rendered in.
+
+ReactDom.render(<Greeting/>, document.getElementById('root'));

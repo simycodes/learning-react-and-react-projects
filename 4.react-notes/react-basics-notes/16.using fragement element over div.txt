@@ -1,0 +1,6 @@
+When you want to enclose JSX with element other than a div as the parent 
+element in a component,you use the <React.Fragment></React.Fragment> which is
+also simply written as <> </>.
+
+Using the fragement <> </> will be only effect in the component but it wont be
+rendered as HTML element on the browser as a div would be.

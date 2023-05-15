@@ -1,0 +1,14 @@
+babel - (transpiler) converts new JS (ES6) to old JS .This is done to make JS run smoothly in old 
+browsers that do not support new JS.
+
+react-apps make use of Babel,webpack-webpack is a module bundler. Its main purpose is to bundle
+JavaScript files for usage in a browser.
+
+Webpack is a tool that lets you compile JavaScript modules, also known as module bundler.
+Given a large number of files, it generates a single file (or a few files) that run your app.
+It can perform many operations: helps you bundle your resources.
+
+Webpack takes modules with dependencies and generates static assets representing those modules.
+
+It is made primarily for JavaScript, but it can transform front-end assets such as HTML, CSS, 
+and images if the corresponding loaders are included

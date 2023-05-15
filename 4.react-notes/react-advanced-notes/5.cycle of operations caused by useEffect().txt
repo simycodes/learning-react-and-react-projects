@@ -1,0 +1,32 @@
+If an event listerner is set inside a useEffect() method and an external reference handler function is
+used that calls a useState() method then a contiouns cyle or flow of executions is created between
+the useEffect and useState that may cause a program to call the event lister many times,which needs
+to be avoided
+
+to solve this, a clean up function is used.
+The clean up function is used to stop this continous flow of execution by removing the event listener
+(which is an example of an effect), and its very important to use in an useEffect() method.
+
+Illustration
+
+const UseEffectCleanup = () => {
+  const [size, setSize] = useState(window.innerWidth);
+  console.log(size);
+
+  const checkSize = () => {
+    setSize(window.innerWidth);  // A continous flow of executions is created here,as when size is 
+  }                              // changed,usEffect will be called which will call checkSize() again
+
+  useEffect(()=>{
+    window.addEventListener("resize", checkSize);
+    // Clean up function - use it to unset effects that continous executions/runs
+    return () => {
+      console.log("cleanup function");
+      window.removeEventListener("resize",checkSize);
+    }
+  });
+
+<></>
+
+}
+

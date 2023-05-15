@@ -1,0 +1,9 @@
+props-properties arguments that are objects.
+
+They are passed on the instances of a component as key and value pair and accessed
+in the main actual component where they are processed and used for logic and
+displaying,initialising to elements innerHTMl or be used as attribute values.
+
+The props that are passed to each instnace of a component must be equal/be available
+and used in the actual component function-class.If not used inside the component,then
+it will not appear in the instances created from this component.

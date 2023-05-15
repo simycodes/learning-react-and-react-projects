@@ -1,0 +1,1 @@
+parent componennt that holds all sub components that make up a react app

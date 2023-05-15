@@ -1,0 +1,5 @@
+Always pass a key prop in the component instance call if instances of a component will
+be rendered as a list.React needs to keep track of the items being rendered in a list
+and do updates as items are added and removed.
+
+<Book key={key} img={img} title={title} author={author}></Book>

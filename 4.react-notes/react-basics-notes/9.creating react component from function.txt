@@ -1,0 +1,9 @@
+A react component can be easily be created from a JS function.But this function to be 
+considered a component,the first letter of the function name should start with an uppercase
+letter.
+
+The function can be the traditional or arrow function.
+
+function Greeting() {
+  return <h4>This is my first component</h4>;
+} 

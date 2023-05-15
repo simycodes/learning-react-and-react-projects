@@ -1,0 +1,8 @@
+prop types is used to valid the props coming into a component.
+
+prop types helps in handling erros that may occur if an API returns data that may conatin missing properties-data
+that may affect the app when displaying its data the user.
+
+The or operator can be used to set up default values for missiing props or default props can be setup on the component.
+
+Using or operator/ shor circuit conditional rendering is more effecient.

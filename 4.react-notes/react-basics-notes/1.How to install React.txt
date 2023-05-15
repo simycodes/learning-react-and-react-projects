@@ -1,0 +1,6 @@
+Open folder using VS code where you are working from
+and type the following command in the VS command line
+
+npx create-react-app tutorial
+
+In this case it was React Workings

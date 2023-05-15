@@ -1,0 +1,48 @@
+React.memo, useCallback and useMemo tell components and functions inside components when to re-render instead of just always re-rendering whenver anythig in the parent component changes.
+
+-React.memo tells sub components to re-render only after given props changes and not to re-render every time parent or sub components re-renders.
+
+-useCallback tells functions inside a component-handlers to only change if a certain dependancy placed on the 
+useCallback changes.
+
+-useMemo tells functions- usually those defined outside a component to only change/re-rendered only if they called with a different argument.Otherwise their result be stored in a variable and used instead.
+
+When a state variable in a component changes variable, the component gets re-rendered and all sub components used 
+along side or in the same component as this state variable will also get - rendered even if these sub components are not making use of the state variable that is changing.
+
+In order to prevent this re-rendering process down to the sub components, the react.memo hook is used.
+The react.memo method is wrapped to the immediate sub component that gets re-rendered and this stops the rendering process down the sub components.Doing this helps increase the optimazation and fastness of the react apps.
+
+When this is done, the sub components will only get rendered once at the initial app rendering. Other coming changes in state variable will not have an effect, unless if the props geting into the sub component changes, then the sub components will change.
+
+Using react.memo method example
+
+const Index = () => {
+  const { products } = useFetch(url)
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <h1>Count : {count}</h1>
+      <button className='btn' onClick={() => setCount(count + 1)}>
+        click me
+      </button>
+      <BigList products={products} />
+    </>
+  )
+}
+
+// IMPLEMENTING react.memo hook here.
+const BigList = React.memo(({ products }) => {
+  useEffect(()=> {
+    console.log("BigList is called");
+  });
+
+  return (
+    <section className='products'>
+      {products.map((product) => {
+        return <SingleProduct key={product.id} {...product}></SingleProduct>
+      })}
+    </section>
+  )
+})

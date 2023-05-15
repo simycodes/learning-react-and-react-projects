@@ -1,0 +1,4 @@
+- render() - gets uses two arguments,the component to be rendered and the file destination in which
+the component will be rendered in.
+
+ReactDom.render(<Greeting/>, document.getElementById('root'));

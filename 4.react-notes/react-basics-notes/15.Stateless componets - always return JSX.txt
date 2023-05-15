@@ -1,0 +1,11 @@
+Stateless functional components are components that do not have a state.
+Must always return JSX or errors will be occur.Even empty JSX is okay.
+Example
+
+function Greeting() {
+  return <h4>This is my first component</h4>;
+}
+
+function Greeting() {
+  return <h4></h4>;
+}

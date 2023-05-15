@@ -1,0 +1,20 @@
+In order to add JS variables in innerHTML of elements in react,a JS environment has
+to be created using the { },then inbetween these braces a JS varible or logic be
+added and it will work.
+The braces are actually used in the return() body to use and access JS,before that
+but still inside the component,JS can be directly be used without introducing {}
+
+const Book = () => {
+  const title = "I Love You to the Moon and Back"; //this direct JS no { }
+  return(
+    <article className='book'>
+       <img src="https://images-na.ssl-images-amazon.com/images/I/8144Vic9C5L._AC_UL900_SR900,600_.jpg" alt="This is a book" width="300px" />
+       <h1>{ title }</h1>
+       <h4>Amelia Hepworth</h4>
+    </article>
+  )
+}
+
+
+Its not only inside innnerHTML that JS can be added but also be initialised to
+attribute values and used in inline CSS styling

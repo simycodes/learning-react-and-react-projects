@@ -1,0 +1,46 @@
+-public folder - folder that holds the index file in which the react app will be displayed in and
+will be rendered in/accessed on the browser
+
+   -index.html inside public folder - This file is the home page and has the div element with id
+   of root in which the final react app is rendered in/displayed in
+    <div id="root"></div>
+
+-src folder - This is holds the js files in which the react app is coded in.
+ The work is done.
+
+   -app.js inside src folder - this is the file in which the actual developing of the create 
+    project occurs.Many other components created from other js files are imported to this file
+    to be used in the building of the final react project.
+
+     function App() {
+       return (
+         <div className='container'>
+           <h2>Advanced Tutorial</h2>
+         </div>
+       )
+      }
+
+   -index.js inside src folder - This holds the final main react app component - which is the actual
+    react application and renders it and sends it to the index.html located inside 
+    the public so the react app can be accessed on the browser.
+
+      ReactDOM.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>,
+       document.getElementById('root')
+      );
+
+
+-package.json - folder holding all names of dependencies
+
+-node_modules - folder storing/containg all the actuall dependancies files
+including dependecies of depedencies files.
+
+-package-lock.json - folder holding all dependecies versions
+
+- build folder (invisible by default) - holds static assests used when hosting the react app.
+run the command " npm run build " and the folder will appear.
+
+NOTE:Its adviced to clean up the react app when created.Hence all files except index.js in the 
+src folder should be deleted.

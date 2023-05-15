@@ -1,0 +1,20 @@
+function Greeting() {
+  return (
+    <div>
+      <img src="" alt="" />
+       <input type="text" />
+    </div>
+  )
+}
+
+OR
+
+function Greeting() {
+  return (
+    <div>
+      <img src="" alt=""></img>
+	<br></br>
+      <input type="text" />
+    </div>
+  )
+}

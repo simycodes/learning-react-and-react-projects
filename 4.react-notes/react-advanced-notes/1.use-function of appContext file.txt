@@ -1,0 +1,70 @@
+The appContext.js file has TWO major roles or functions as it acts as the REACT FRONTEND CONTROLLER.
+
+1) GETS DATA FROM THE DATABASE, AND AFTER SUCCESSFULLY GETING DATA FROM DATABASE IT SENDS THAT DATA TO THE
+reducer.js WHICH THEN UPDATES THE FRONTEND END REACT DATA APPLICATION BUY UPDATING THE GLOBAL STATE VARIABLES.
+
+
+2) SENDS DATA TO reducer.js IN ORDER FOR IT MAKE CHANGES TO THE REACT APP SO DATA CAN BE RECEIVED FROM THE USER
+,AND AFTER AND AFTER SUCCESSFULLY GETING DATA FROM THE USER, IT SENDS THAT DATA TO THE DATABASE.
+
+NOTE: IN THE ABOVE MENTIONED MAJOR PROCESS,IT MUST BE NOTED THAT appContext.js CAN CONTACT reducer,js BEFORE AND AFTER CONTACTING DATABASE.IT MAY CONTACT reducer.js JUST TO SHOW A NOTIFICATION IN THE FRONTEND THAT DATA IS
+BEING RETRIEVED FROM THE DATABASE.
+
+
+## 1 EXAMPLE
+
+// FUNCTION TO LOGIN A USER
+  const loginUser = async (currentUser) => {
+    dispatch({ type: LOGIN_USER_BEGIN });
+    // LOGIN BY SENDING LOGIN USER DETAILS TO THE SERVER
+    try {
+      const { data } = await axios.post('/api/v1/auth/login', currentUser);
+      // GET THE USER DATA FROM THE DATABASE AND SEND TO THE STORE ON FRONT END & FOR LOGIN SESSION 
+      const { user, token, location } = data;
+
+      dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: { user, token, location },
+      });
+      // ADD LOGIN DETAILS TO THE LOCAL STORAGE FOR SESSION LOGIN PERSISTENCE
+      addUserToLocalStorage({ user, token, location });
+    } catch (error) {
+      dispatch({
+        type: LOGIN_USER_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    clearAlert();
+  };
+
+
+
+## 2 EXAMPLE
+
+// FUNCTION TO EDIT A JOB BEING UPDATED
+  const editJob = async () => {
+    dispatch({ type: EDIT_JOB_BEGIN });
+
+    try {
+      const { position, company, jobLocation, jobType, status } = state;
+      // SEND PATCH REQUEST TO THE API WITH USER DATA FOR UPDATE PROCESS
+      await authFetch.patch(`/jobs/${state.editJobId}`, {
+        company,
+        position,
+        jobLocation,
+        jobType,
+        status,
+      });
+      
+      dispatch({ type: EDIT_JOB_SUCCESS });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (error) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: EDIT_JOB_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+
+    clearAlert();
+  };

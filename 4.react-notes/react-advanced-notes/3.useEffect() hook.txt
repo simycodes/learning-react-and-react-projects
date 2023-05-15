@@ -1,0 +1,33 @@
+useEffect() hook allows to perform side effects -side effect refers to works/functionalities/changes 
+perfomed outside of a component.This may include such as fetching data(API requests),signing up for a 
+subscription,setting up an event listener or changing a web document title.
+
+It always runs after a component has been re-rendered.
+It is a hook that always has a return method as an argument.
+
+It can optionally carry second array argument known as the array dependancy argument.This argument
+must be always used to prevent the useEffect to run every time a component is re-rendered.Use a 
+dependancy variable inside the array [value] ,the value which is likely to change,to make the 
+useEffect function to only run at certain conditions - when the value changes and not everytime
+a component re-renders which may cause a continous flow of executions between the useState and
+useEffect.
+
+It is used to makes changes after a component has been rendered and not when a component is being
+re-rendered which basically the function of useState().
+
+NOTE: a useEffect can be used as async function but cna hold an async function inside its callback 
+function argument(prefererenc is not to define it here but externally in same component),
+because a useEffect does not use a promise but uses a cleanup function for its functionality.
+If data needs to be used will accessed through async,then this async function must be defined 
+externally and only use its results in the useEffect() method.
+
+useEffect(()=>{
+  // code that runs after every re-render of a component
+})
+
+Always used inside of a componet like a useState()
+Does not need to have a type infront of it such as const
+
+const useEffect(()=>{
+  // code that runs after every re-render of a component
+})

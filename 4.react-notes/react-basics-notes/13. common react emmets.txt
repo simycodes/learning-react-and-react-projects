@@ -1,0 +1,15 @@
+ES7+ React/Redux/React-Native snippets allows the use of common react emmet
+for starting a react project
+https://github.com/chillios-ts/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
+
+rfce -import React from 'react' and all starting code as declared function
+rafc - import React from 'react' and all starting code as arrow function component
+rafce - import React from 'react' and all starting code as arrow function 
+component with export included
+
+
+imr→	import React from 'react'
+imrd→	import ReactDOM from 'react-dom'
+imrc→	import React, { Component } from 'react'
+imrpc→	import React, { PureComponent } from 'react'
+imrm→	import React, { memo } from 'react'

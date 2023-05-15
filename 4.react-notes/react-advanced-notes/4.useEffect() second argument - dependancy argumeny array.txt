@@ -1,0 +1,37 @@
+useEffect() always runs after a component has been re-rendered.
+
+
+It is a hook that always has a return method as an argument.
+It can optionally carry second array argument known as the array dependancy argument.
+
+If this second argument is used and its empty [],this makes the useEffect function to only run after 
+the initial or first render of a component - which is after a webpage is loaded/accesed on the browser.
+
+if this second argument is omitted then the useEffect in that component will be run after every
+re-render of the component.
+
+But the second array argument can hold a varaible which acts a dependancy,and when this changes,it makes
+the useEffect to run.
+
+UseEffect can also optionally return a function called a clean up function,that is used to stop
+a continous flow of executions of the useEffect if the useEffect has an effectListerner as an effect.
+
+Example Below
+
+const UseEffectBasics = () => {
+  const [value, setValue] =  useState(0);
+  useEffect(()=>{
+    if(value >= 1){
+    document.title = `New Message(${value})`;
+    }
+  },[value]);  // if value changes,then the useEffectBasics is executed / run
+  
+  <></>
+}
+
+// This useEffect() will only run once(initial render) due to second dependency argument 
+// being empty []
+
+  useEffect(()=> {
+    console.log("Hello World");
+  },[]);

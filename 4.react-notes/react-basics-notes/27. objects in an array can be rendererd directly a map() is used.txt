@@ -1,0 +1,7 @@
+Objects properties of an array can be passed directly to a component as
+
+  eg books[1].img;  
+
+ This causes errors.Hence the objects have to be in a map method and/ be destructured
+in order to be used in a given component.
+

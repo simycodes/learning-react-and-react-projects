@@ -1,0 +1,31 @@
+Usual react components are created as a non default class-function, whose instances
+are created by non default component constructor-call that passes in arguments/props
+that the componet class-function uses.
+
+Its a non default class-function because its  values are initialised by arguments
+from the outside which are also known as props/properties.For this reason components
+are created in this way so they can be reused easily to create various instances or
+objects of themselves.
+
+initialisng components with static data does not really give a programmer the power
+of using components in react.
+
+//THE NON DEFAULT COMPONENT
+
+const Book = (props) => {
+  console.log(props);
+  const { img, title, author} = props;
+  //const { img, title, author} = props.books;
+  return(
+    <article className='book'>
+       <img src={ img } alt="This is a book" width="300px" />
+       <h1>{ title }</h1>
+       <h4>{ author.toUpperCase() }</h4>
+    </article>
+  )
+}
+
+//THE NON DEFAULT COMPONENT CONSTRUCTOR-INSTANCE
+
+<Book img={img} title={title} author={author}></Book>
+

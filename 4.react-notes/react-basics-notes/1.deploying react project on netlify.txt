@@ -1,0 +1,26 @@
+Do the following to deploy a react project-app on netlify
+
+
+1.Create a production build by using the command below
+
+  npm run build
+
+  This will create a an optimised production build or optimised version-folder of the
+  the react project-application that can now be then used by hosting on online on
+  a netlify account.
+
+
+2.The process of running the command above creates a folder called build,that can be then
+  uploaded to a netlify account and be hosted,then the react application will now be
+  available online.
+
+  The below message is given out after successfully creating a build folder
+
+  The build folder is ready to be deployed.
+  You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+  Find out more about deployment here:
+  https://cra.link/deployment

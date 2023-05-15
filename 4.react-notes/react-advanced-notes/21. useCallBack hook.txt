@@ -1,0 +1,37 @@
+useCallBack hook is used to prevent component fuction-handler from re-rendering/being recreated (that causes components
+its in to re-render) if its values inside have not changed.It holds the functions last state and checks for any changes
+in it before re-creating/re-rendering it.
+
+A change in a sub component can make the parent components to re-render as well, even if the value changed in the sub
+component does not affect the runnings of the parent components.These changes in the sub component may include changes
+triggered by a function handler called in the sub component that is actually defined in the parent component, making all
+components to be re-rendered.
+
+To be stop this re-rendering of the parent components caused by changes in the parent components, the useCallBack hook
+is used.
+
+When a sub components has a function that is clicked on, the parent component that holds it will change because the
+function changed, and the sub components that helped pass it down to the sub component will also re-render beacuse
+React.memo will detect a change in the prop function passed, making all components to be re-rendered.
+
+React.memo looks for changes in state-variable props before making a component to re-render WHILE useCallback hook
+checks changes in function-props changes before making components - parent or sub to re-render.
+
+React.memo wrapps around a component to check changes in props WHILE useCallback wrapps around functions-handlers
+defined inside components (especially functions in parent components) to check for changes in the function, and if any
+changes occur, then the re-render can occur only when the dependancy variable of the useCallBack function changes.
+
+NOTE: everytime a component is re-rendered, even its functions - handlers gets re-created, hence if such functions
+ are passed are passed as props to sub components, sub components will get rendered too even if React.memo is used
+because React.memo does not catch changes in function props, hence useCallback must be used to wrappe the functions
+so changes in them can only occur if the dependancy of the useCallback changes. 
+
+useCallBack has a dependacy variable like the useEffect. This dependancy [] detects when the function has changed,
+as change in the dependancy means the function-handler used the dependancy variable.
+
+
+
+ const addToCart = useCallback(() => {
+    setCart(cart + 1);
+  },[cart])
+

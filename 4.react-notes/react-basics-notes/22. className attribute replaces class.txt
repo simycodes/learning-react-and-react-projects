@@ -1,0 +1,13 @@
+To make use of classes when styling css in react,the class attribute becomes
+className.
+
+
+Hence in Normal CSS
+
+   class="container"
+
+
+In react 
+
+   className="container"
+

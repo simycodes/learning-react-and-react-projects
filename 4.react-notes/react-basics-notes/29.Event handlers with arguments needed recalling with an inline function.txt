@@ -1,0 +1,23 @@
+Event handlers with arguments needed recalling with an inline function.They cannot
+be called directly on an event as they trigger before the even-click occurs
+
+
+CALL LIKE THIS
+
+<button type="button" onClick={() => complexExample(author)}>
+    Event Handler with an Argument
+</button>
+
+
+NOT LIKE THIS
+
+<button type="button" onClick={complexExample(author)}>
+     Event Handler with an Argument
+</button>
+
+
+EVENT HANDLER
+
+const complexExample = (author) => {
+     alert(author);
+  }

@@ -1,0 +1,23 @@
+ Putting a preventDefault on a form after its submitted stops it from refreshing the page after a submit by a user.
+ Then the developer can easily handle actions after user submits a form.
+
+
+const ControlledInputs = () => {
+
+ const handleSubmit = (e) => {
+    e.preventDefault(); // form refreshes page after each submit, stop this effect
+    
+  }
+
+ return <>
+    <article>
+      <form className="form" onSubmit={handleSubmit}>
+
+        <div className="form-control">
+          <label htmlFor='firstName'>Name : </label>
+          <input type="text" id="firstName" name="firstName" />
+        </div>
+
+	</form>
+    </article>
+ </>

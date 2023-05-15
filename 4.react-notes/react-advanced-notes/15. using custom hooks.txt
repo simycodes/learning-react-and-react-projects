@@ -1,0 +1,19 @@
+USING CUSTOM HOOKS
+
+custom hooks are used to implement reusability of process/code/logic. Implementing the reusing of code for things
+such as fetching data and any logic and not resuing html/jsx code as that is done using components.
+
+A custom hook is a  reusable hook-function (a component without no return of html/jsx) that is user defined.It has
+logic that can be used in other components, in short its just a function that can be called in other components for
+its services.It mainly returns an object holding state values that need to be used in the calling components.
+
+A custom hook behaves like a usual function and is different from a react component as it does not return jsx or html
+but returns objects and state values-variables needed for use by other components.
+
+A custom hook also makes use of other inbuilt hooks such as useState and useEffect as it uses use state variables and
+logic from useEffects and also fetch api etc to perform its logic needed by other components.
+
+In React, a custom Hook is a function that starts with the word “use” and may call other Hooks. 
+
+custom hooks are available on net - jsut search custom hooks and libraries will be there.
+https://reactjs.org/docs/hooks-custom.html

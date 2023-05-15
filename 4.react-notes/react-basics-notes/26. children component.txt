@@ -1,0 +1,7 @@
+children component refers to the content/html element that is put and displayed in 
+the innerHTML of an instance of a component.
+
+the children component is also carried in the props argument and can be used
+inside the component task.
+
+the name 'children' can be changed.

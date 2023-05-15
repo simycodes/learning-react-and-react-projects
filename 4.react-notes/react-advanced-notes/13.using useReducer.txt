@@ -1,0 +1,39 @@
+The useReducer Hook is similar to the useState Hook. It allows for custom state logic. 
+If you find yourself keeping track of multiple pieces of state that rely on complex logic, useReducer may be useful.
+
+
+The useReducer Hook works as useState Hook but it handles several useState variables and methods.useReducer works with
+the idea of mananging several useState variables and methods through a single way/manner/ using a useReducer method.
+The useReducer Hook returns the current state and a dispatch method.
+
+The useReducer variable always uses reducer as an argument.And every task that a useRedudcer handles is done by the
+dispatch method via the useReducer argument.
+
+const [state, dispatch] = useReducer(reducer);
+// state now is initialized/holds data of defaultState
+
+-- reducer is a method that takes in-converts the old state and then gives out a new state using an action argument. 
+action - what is being done to the state variable passed inThe reducer is developer made.
+-- state is a variable that holds the state - just as useState
+-- dispatch is a method working on the state variable - just as useState method such as setName
+
+
+Syntax
+The useReducer Hook accepts two arguments -- All arguments are a must and are created by developer to suit the program
+
+
+useReducer(<reducer>, <initialState>)
+
+- The reducer function contains your custom state logic and reducer is responsible for updating all the possible 
+useState variable - all happening in one function-place 
+
+
+
+- initialState/defaultState can be a simple value but generally will  contain an object - holding all possible 
+useState variables as object properties
+
+const defaultState = {
+  people: data,
+  isModalOpen: true,
+  modalContent: 'Hello World',
+}

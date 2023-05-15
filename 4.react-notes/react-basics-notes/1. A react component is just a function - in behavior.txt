@@ -1,0 +1,30 @@
+A react component is very similar to/is a function.
+
+Its created with same exact syntax as a function except it has to start with a 
+capital letter and has to always return something - usually JSX
+
+It accepts arguments which are refered to as props,which is uses for its logic in order
+t produce the needed output.
+
+It is made up maily of HTML elements which are referred to as JSX elements and JS
+varibles that are placed in the innerHTML of the JSX elements.
+
+A component is maily used for making and rendering several instances that holds
+different data,each representing a different item,such as various books of
+a library or products of a shop.
+In this ability a component works as a class from which various instnaces are created
+that hold different data reprenting different items.And the passing of various data
+is make possible through the use of component arguments/props and the use of a for
+loop generate several instances of a component. 
+
+const Book = () => {
+  const title = "I Love You to the Moon and Back";
+  
+  return(
+    <article className='book'>
+       <img src="https://images-na.ssl-images-amazon.com/images/I/8144Vic9C5L._AC_UL900_SR900,600_.jpg" alt="This is a book" width="300px" />
+       <h1>{ title }</h1>
+       <h4>Amelia Hepworth</h4>
+    </article>
+  )
+}

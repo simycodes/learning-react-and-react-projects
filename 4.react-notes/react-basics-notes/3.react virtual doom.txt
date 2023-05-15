@@ -1,0 +1,3 @@
+React uses a virtual doom that makes react apps faster as it only detects areas/components
+of an application that have changed and updates them without having to refresh or update 
+the all application.

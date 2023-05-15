@@ -1,0 +1,4 @@
+(or selecting a specific version)
+You can use the nvm install command to install a specifc version nvm install[version.number] and then switch between the versions with nvm use [version.number]
+
+the version number can be like 4.9.1 or 8 or v6.1

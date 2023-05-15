@@ -1,0 +1,39 @@
+- The useState() method/function is a method defined inside react.
+- The useState() preserves the state of a value(variables) and triggers a re-render of a component.
+- The useState() is used to change states of components-change their innerHTML,attributes,css etc, fast
+and efficiently as it triggers components to re-render and show new updated changes in a component.
+
+ - useState() allows you to define and assign a variable & function and connect this variable to the
+   defined function that can easily access it and change it.
+
+it comes into a JS document as a named import,actual name its created in react is used when importing
+it
+
+import { useState } from 'react';
+
+- useState function uses two arguments, a variable and a function handler and it returns an array.
+- the handler as the second argument is used to change/control the first argument variable which holds
+  a components state.
+
+  // useCase takes 2 arguments(variable,handler function)& returns an array
+  // The first argument can be an int,string,array,object etc
+  const firstArgumentVariable = useState(1)[0];
+  const secondArgumentFunction = useState(1)[1];
+  console.log(firstArgumentVariable,secondArgumentFunction);
+
+  - first argument as an array
+    const[people, setPeople] = React.useState([]);
+
+  // using destructuring to get values from useState()-usual coding way
+  // text holds the value inside useState() which is Random Text
+
+  let [text, setText] = useState("Random Text");
+
+
+// NOTE
+// useState() allows you to define and assign a variable & function and connect this 
+// variable to the defined function that can easily access it and change it.
+// this defination process happen immediately you assign an argument to a useState function
+// like this useState("Hello World"),variable will hold Hello World and function will have
+// access to this variable and this variable and function can be accessed through destructuring
+// like this : let [text, setText] = useState("Hello World");

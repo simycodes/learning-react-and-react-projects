@@ -1,0 +1,5 @@
+npx comes in node 5.2.0 and above versions
+
+npx is used in creating react apps.
+
+npx create-react-app tutorial

@@ -1,0 +1,21 @@
+https://stackoverflow.com/questions/69217047/using-reactjs-php-and-mysql-is-possible
+
+
+Absolutely! The best approach is to write an API in PHP to pass the MySQL data to javascript via REST endpoints. 
+Like this:
+https://code.tutsplus.com/tutorials/how-to-build-a-simple-rest-api-in-php--cms-37000
+
+Let’s see how the URL of our endpoint looks:
+// https://localhost/index.php/{MODULE_NAME}/{METHOD_NAME}?limit={LIMIT_VALUE} 
+http://localhost/index.php/user/list?limit=20
+
+
+REACT AND PHP PROJECTS AND TUTORIALS
+https://www.youtube.com/results?search_query=react+php+project
+https://www.youtube.com/watch?v=nmCeSPGcBnY
+https://www.youtube.com/watch?v=96DuZ33NX_Y
+
+
+REACT AND LARAVEL PROJECTS AND TUTORIALS - search in youtube - react laravel project
+https://www.youtube.com/results?search_query=react+laravel+project
+https://www.youtube.com/watch?v=svziC8BblM0

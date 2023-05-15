@@ -1,0 +1,30 @@
+inline css is taken as a JS object.
+
+
+When using inline css.The css is linked as an object by inserting the inline
+css inline the {} . An object having a property and a value {color:'#617D98'} -
+color as the property and #617D98 as the value.
+
+
+Usual inline css
+
+    style="background-color:red";
+
+
+
+Inline css in react
+
+
+     style={  }
+
+Inside of {} any JS code can be put and will work.
+To insert css, an object {} is used.
+
+   style={ {}  }
+
+   Outer braces {    } create a JS environment
+   Innner {} is an JS object that is coded as JS inside the JS environement
+   created by the outer braces {    }
+
+   {color:'#617D98', fontSize:'.75rem'} 
+

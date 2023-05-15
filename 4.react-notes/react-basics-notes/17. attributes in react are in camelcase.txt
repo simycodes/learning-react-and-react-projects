@@ -1,0 +1,17 @@
+attributes in react are in camelcase and using a class for css -the class attribute
+is className and not just class
+
+In below example - Onclick as attribute,className as CSS attribute commonly used
+as 'class' only in normal CSS and JS syntax.
+
+function Greeting() {
+  return (
+    <div>
+      <h4>This is my first component</h4>
+      <button OnClick="changeColor()" className="btnColor">
+         Click Me
+      </button>
+    </div>
+  )
+}
+

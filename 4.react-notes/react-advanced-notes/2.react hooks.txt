@@ -1,0 +1,48 @@
+hooks refers to methods or function defined and imported from react.
+
+Simple features and rules for hooks
+
+- They always start with "use" - even user defined hooks should start with "use"
+
+  Example : useState()
+
+- hooks need to be defined inside the body of a component.Outside this,the hook willl not
+  work
+
+- cannot call a hook conditionally
+
+  Example 
+
+  const UseEffectBasics = () => {
+   const [value,setValue] =  useState(0);
+   if(value > 0){ // THIS CANNOT BE DONE WILL CAUSE AN ERROR,USE OF value & useEffect() is wrong here
+     useEffect(()=>{
+     document.title = `New Message(${value})`
+     });
+    }
+     return (
+      <>
+      <h1>{value}</h1>
+      <button className="btn" onClick={()=> setValue(value+1)}>
+         Click Me
+      </button>
+      </>
+     )
+   };
+
+
+
+
+  But this can be done
+
+  let [text, setText] = useState("Random Text");
+
+  const clickHandler = () => {
+    // setText("Hello World!");
+    if(text === "Random Title") {
+      setText("Hello World");
+    }
+    else {
+      setText("Random Title");
+    }
+  }

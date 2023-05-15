@@ -1,0 +1,81 @@
+contextAPI and redux(in complex situations) helps to remove the use of prop drilling in passing props to sub
+components. - Helps create global variables(similar to sessions) for a react app.
+
+// Defining a context variable - using React.createContext;
+// The context variable.Provider is then used to pass props to sub components by
+// just wrapping the parent-root components return body & accessing using useContext. Its common
+// for variable.Provider to be put in another user defined component and then use this component to wrap the
+// parent component in order to send props down the component chain.This other defined component is where the
+// props (use state variables and methods and custom methods are defined and then passed to the context variable in 
+// the return body.
+
+const personContext = React.createContext;
+
+// the context variable holds two components - Provider, Consumer - useContext 
+// replaced it and its not part of useContext variable but independent hook
+
+// the context variable will hold all props to be passed to sub components and will be
+// accessed by useContext. Props to be initialised by useContext variable.provide value=""
+
+
+To access the passed prop passed by the context variable.Provider, use the useContext hook which uses the context
+variable as an argument.
+The call using the useContext is done in the sub component that wants to use the passed prop.
+
+ILLUSTRATION
+
+import React, { useState, useContext } from 'react';
+
+// the context variable will hold all props to be passed to sub components and will be
+// accessed by useContext()
+const AppContext = React.createContext();
+
+const AppProvider = ({ children }) => {
+    return(
+        //  Props to be passed initialized by useContext variable.provide value=""
+        <AppContext.Provider value='hello'>{children}</AppContext.Provider>
+    )
+}
+
+export {AppContext, AppProvider}
+
+ACCESSING PROPS PASSED BY A CONTEXT VARIABLE HOLDER
+
+const Home = () => {
+  // Getting prop passed in context variable in a sub component
+  const data = useContext(AppContext);
+  console.log(data)
+
+  return (
+	<div> </div>
+  )
+
+}
+
+
+THE OTHER COMPONENT MENTIONED ABOVE WHERE THE USECONTEXT VARIABLE IS PLACED AND WHERE PROPS TO BE PASSED ARE DEFINED
+const AppProvider = ({ children }) => {
+    const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openSideBar = () => {
+        setIsSideBarOpen(true);
+    }
+
+    const closeSideBar = () => {
+        setIsSideBarOpen(false);
+    }
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsSideBarOpen(false);
+    }
+
+    return(
+        //  Props to be passed initialized by useContext variable.provide value=""
+        <AppContext.Provider value={{isSideBarOpen, isModalOpen, openSideBar, closeSideBar, openModal, closeModal}}>{children}</AppContext.Provider>
+    )
+}
