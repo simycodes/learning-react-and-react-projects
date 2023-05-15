@@ -1,0 +1,4 @@
+What is the difference between PUT and PATCH? In the REST world, PUT and PATCH have different semantics. 
+
+PUT means replace the entire resource with given data (so null out fields if they are not provided in the request), 
+while PATCH means replace only specified fields.

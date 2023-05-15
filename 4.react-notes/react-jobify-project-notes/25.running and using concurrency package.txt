@@ -1,0 +1,12 @@
+USE THE FOLLOWING SCRIPT IN THE SERVER
+
+// --kill-others switch, all commands are killed if one dies
+// --prefix client - folder
+// cd client && npm start
+// escape quotes
+
+"scripts": {
+    "server": "nodemon server --ignore client",
+    "client": "npm start --prefix client",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \" npm run client\""
+  },

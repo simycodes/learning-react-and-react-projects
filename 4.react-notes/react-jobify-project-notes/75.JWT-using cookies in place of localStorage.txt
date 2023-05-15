@@ -1,0 +1,30 @@
+Local storage can be accessed by JS, hence when we store JWT in local storage, its not very secure, as other people can easily get access to the local storage using JS and manipulate the JWT tokens.
+
+Hence, instead of using local storage to hold the JWT, we use the cookies because cookies can not be directly be accessed with JS code but only by the browser, which is a bit more secure than local storage being accessed directly with JS.
+
+When we use cookies to store JWT, then we wont have to store JWT in the react local state(in appContext) as  this will be held by the browser in the cookies and the browser will be used to send back the cookies when making requests to the backend.The browser does this sending of cookies to the api automatically.
+
+Cookies help simplify the setting up of the frontend.It helps write less code on the frontend, as the local storage frontend code( to store JWT) wont be written, as cookies will be stored automatically and securely by the browser, and more secure than in the localstorage, where JS code can be used to manipulate the tokens.
+
+By default, cookies are sent back to the api, if the api has the same domain as the front end(or frontend and api are hosted on the same address or server), if the frontend and api are hosted on different servers/services/platforms, then some changes need to be made on how the cookies will be configured and sent to the api from the frontend.
+
+NOTE: The browser automatically sends its cookies(attaches cookies) to the api on every api request made to the api/backend.
+
+NOTE:The cookie is attached to the res variable (of (req, res) {})
+
+The browsor automatically adds a cookie header to all outgoing requests to the api
+Cookie: firstname=Simon; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZjZDgyMTQyZTY1NTM2ZWY5M2U2NTciLCJpYXQiOjE2ODA2MDY0NTcsImV4cCI6MTY4MDY5Mjg1N30.6QjH14VEVCTUZv-djZcs-pIvInW7wlRRVm1LD13y6S4
+
+Even though a Cookie header is sent, accessing the JWT on the api is done through the req variable (of (req, res) {}), where the cookie is stored in the cookies property.
+
+req.cookies
+console.log(req.cookies);
+
+// FUNCTION TO AUTHENTICATE EACH USER ACCESSING A PROTECTED ROUTE
+const auth = async (req, res, next) => {
+  // CHECK IF HEADERS HAVE THE BEAR WITH JWT TOKEN
+  console.log(req.cookies);
+}
+
+
+

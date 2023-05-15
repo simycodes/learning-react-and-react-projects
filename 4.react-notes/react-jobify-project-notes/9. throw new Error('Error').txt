@@ -1,0 +1,1 @@
+throw new Error() is used to throw an error that may occur in body of code

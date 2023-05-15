@@ -1,0 +1,27 @@
+import { useEffect } from 'react';
+
+const Dashboard = () => {
+
+  // FUNCTION TO FETCH DATA FROM THE APP SERVER USING fetch
+  const fetchData = async() => {
+    try {
+      const response = await fetch('http://localhost:5000/');
+	// This code creates errors = const response = await fetch('/'); and in api app.get('/', (req, res) => {})
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // CALL FUNCTION TO FETCH DATA AFTER EVERY COMPONENT IS LOADED
+  useEffect(()=> {
+    fetchData();
+  },[])
+
+  return (
+    <h1>dashboard</h1>
+  )
+}
+
+export default Dashboard

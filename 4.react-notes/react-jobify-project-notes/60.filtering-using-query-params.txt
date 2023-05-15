@@ -1,0 +1,38 @@
+NOTE: FILTERING PROCESS IN THE BACKEND JUST INVOLVES THE DYNAMIC CHANGING OF THE WHERE CLAUSES WHERE SEARCH FOR
+DATA IN THE DATABASE.AND THESE CLAUSES ARE PASSED IN THE find() METHOD WHEN GETING DATA FROM THE DATABASE.
+
+Query parameters are a defined set of parameters attached to the end of a url.To append query params to the end of a URL, a '? ' Is added followed immediately by a query parameter.
+
+query params are sent in the query object of the body the req body, hence in the backend get the query params in the backend as shown below
+  const { status } = req.query
+
+They are pair values attached to the url using a ? Eg.  q=abstract in a url will be like below
+ https://www.google.com/search?q=abstract.
+
+q= is what is actually refered to as the parameter and abstract variable-input from the user - making a pair refered to as the query params.
+
+https://www.abstractapi.com/api-glossary/query-parameters
+Query parameters are parameters attached to the end of a URL and separated from the URL by a question mark (?).
+
+The section before the question mark is the path parameter, and the section after the question mark is the query. The path parameter defines the resource location, while the query parameter defines filter, sort, or pagination operations. The user's input (the query) is passed as a variable in the query parameter.
+
+Path parameters are part of the endpoint and are [required].
+
+We can pass multiple variables with the `&` symbol separating parameters, forming a query string.Can we use query parameters in our REST API requests to endpoints?
+
+Example below
+
+GET /surfreport/beachId?days=3&units=metric&time=1400
+
+What do we see in this GET request?  
+
+`/surfreport/beachID` `/surfreport` is the endpoint, and `beachID` is the path parameter. Path parameters are part of the endpoint and are [required](https://swagger.io/docs/specification/describing-parameters/).
+`?` is where our query string begins.
+
+`days=3` is a query parameter (`days`) that is taking the argument `3` to sort the surf report retrieved from the API into results from the next three days.
+
+`units=metric` is a query parameter that displays our results in Metric units.
+
+`time=1400` is a query parameter that displays results at time 1400.
+
+`&` is joining our individual query parameters into one query string.  

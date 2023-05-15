@@ -1,0 +1,12 @@
+https://stackoverflow.com/questions/70644361/react-router-dom-v6-shows-active-for-index-as-well-as-other-subroutes
+
+If the end prop is used, it will ensure this component isn't matched as "active" when its descendant paths are matched.
+
+<NavLink to='' end>
+  {({ isActive }) =>
+     isActive ? (
+           <text style={{color: blue}}>Home</text>
+     ) : (                      
+           <text>Home</text>
+     )
+  }

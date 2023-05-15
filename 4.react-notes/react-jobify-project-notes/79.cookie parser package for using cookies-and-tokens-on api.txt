@@ -1,0 +1,18 @@
+In order to get the JWT on the api sent via the tokens, the cookie-parser package needs to be used to parse the incoming cookies before they are finally used in the api app.
+
+
+// ALLOW RECEIVING AND PARSE INCOMING JSON AND COOKIES ON POST REQUESTS ETC
+app.use(express.json());
+app.use(cookieParser());
+
+
+Even though a Cookie header is sent, accessing the JWT on the api is done through the req variable (of (req, res) {}), where the cookie is stored in the cookies property.
+
+req.cookies
+console.log(req.cookies);
+
+// FUNCTION TO AUTHENTICATE EACH USER ACCESSING A PROTECTED ROUTE
+const auth = async (req, res, next) => {
+  // CHECK IF HEADERS HAVE THE BEAR WITH JWT TOKEN
+  console.log(req.cookies);
+}

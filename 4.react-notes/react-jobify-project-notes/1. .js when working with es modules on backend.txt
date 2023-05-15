@@ -1,0 +1,3 @@
+add .js extension when working with ES6 modules on backend
+
+import User from '../models/User.js'; // add .js extension when working with ES6 modules on backend

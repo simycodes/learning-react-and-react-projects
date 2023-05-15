@@ -1,0 +1,53 @@
+No need sending back token in res.json() when cookies used are used to store the JWT token.
+
+INSTEAD OF SENDING
+res.status(StatusCodes.OK).json({ user, token, location: user.location });
+
+WE SEND
+res.status(StatusCodes.OK).json({ user,location: user.location });
+
+ILLUSTRATION
+
+// CREATE JWT - FUNCTION IS IN User.js
+const token = user.createJWT();
+
+// SET UP A COOKIE TO HOLD THE JWT - NO NEED TO SEND THE TOKEN TO BACKEND ANYMORE IN
+// ORDER TO STORE IT LOCAL STORAGE AS STORAGE IS NOW DONE BY THE COOKIES IN THE BROWSER
+ attachCookies({ res, token });
+
+ // SEND BACK THE REQUEST STATUS AND USER DATA TO THE FRONT END
+  res.status(StatusCodes.OK).json({ user, location: user.location });
+
+// ROUTE TO LOGIN A USER
+const login = async (req, res) => {
+  // GET THE USER LOGIN DETAILS
+  const { email, password } = req.body;
+
+  // VALIDATE IF EMAIL AND PASSWORD IS NOT EMPTY
+  if (!email || !password) {
+    throw new BadRequestError('Please provide all values');
+  }
+  // GET THE USER FROM THE DATABASE USING THE EMAIL ENTERED -
+  // .select('+password'); HELPS GET RETURN PWD FROM DB AS IT RESTRICTED BY DEFAULT +, SET BY select in user model
+  const user = await User.findOne({ email }).select('+password');
+  // CHECK IF THE USER EXISTS IN THE DATABASE (IS REGISTERED USER)
+  if (!user) {
+    throw new UnAuthenticatedError('Invalid Credentials');
+  }
+
+  // COMPARE USER ENTERED PASSWORD WITH DB DATABASE - await user. PASSES DB PASSWORD TO 
+  // FUNCTION comparePassword, password IS USER ENTERED PASSWORD
+  const isPasswordCorrect = await user.comparePassword(password);
+  if (!isPasswordCorrect) {
+    throw new UnAuthenticatedError('Invalid Credentials');
+  }
+  // CREATE SESSION USER TOKEN - user.createJWT(); CALLS UserSchema.methods.createJWT = function () {} IN user model
+  const token = user.createJWT();
+  // REMOVE THE PASSWORD FROM THE CLIENT SIDE AFTER COMPARING IS DONE
+  user.password = undefined;
+  // SET UP A COOKIE TO HOLD THE JWT
+  attachCookies({ res, token });
+ 
+  // SEND BACK THE REQUEST STATUS AND USER DATA TO THE FRONT END
+  res.status(StatusCodes.OK).json({ user, location: user.location });
+};

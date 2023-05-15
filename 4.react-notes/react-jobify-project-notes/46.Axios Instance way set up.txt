@@ -1,0 +1,30 @@
+AXIOS SETUP USING THE AN AXIOS INSTANCE CREATED USING axios.create() METHOD.
+
+THIS IS THE BEST WAY OF SETTING UP AXIOS WHEN SENDTING DATA FROM FRONT-END TO THE API/DATABASE
+
+const AppProvider = ({ children }) => {
+
+// SETTING UP THE AXIOS INSTANCE
+const authFetch = axios.create({
+    baseURL: '/api/v1',
+    headers: {
+      Authorization: `Bearer ${state.token}`
+    }
+  })
+
+const updaterUser = async (currentUser) => {
+    try {
+      // currentUser IS SECOND ARGUMENT(data to send to database), headers IS A THE OPTIONS
+      // ARGUMENT - HELPS SEND DATA(token&update data) FROM THE FRONT-END TO THE BACKEND USING headers OBJECT
+
+      // authFetch IS AN AXIOS INSTANCE-OBJECT BEING USED TO SEND DATA AND TOKENS
+      const { data } = await authFetch.patch('/auth/updateUser', currentUser);
+      console.log(data);
+    } catch (error) {
+      console.log(error.response);
+      }
+   };
+
+return ()
+
+}

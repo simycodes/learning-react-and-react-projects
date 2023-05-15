@@ -1,0 +1,2 @@
+proxy config is or implemented done on frontend - react app json file
+

@@ -1,0 +1,35 @@
+$sum function is used to sum up the occurances of a certain property of  in a document in a collection''
+
+{ $group: { _id: '$status', count: { $sum: 1 } } },
+
+
+{
+    "stats": [
+        {
+            "_id": "declined",
+            "count": 24
+        },
+        {
+            "_id": "interview",
+            "count": 32
+        },
+        {
+            "_id": "pending",
+            "count": 19
+        }
+    ]
+}
+
+
+// FUNCTION TO GET THE JOB STATS
+const showStats = async (req, res) => {
+  // FILTERING AND SORTING DOCUMENT AFTER GETTING IT FROM DB - $match=filter,$group-filter also ,more detailed
+  let stats = await Job.aggregate([
+    // GET ALL JOBS CREATED BY THE LOGGED USER
+    // Types.ObjectId() converts user id(a string) into a db object id
+    { $match:{ createdBy:mongoose.Types.ObjectId(req.user.userId) }}, 
+    // GROUP THE DOCUMENTS ACCORDING TO THE STATUS PROPERTY
+    { $group: { _id: '$status', count: { $sum: 1 } } },
+  ])
+  res.status(StatusCodes.OK).json({ stats });
+}

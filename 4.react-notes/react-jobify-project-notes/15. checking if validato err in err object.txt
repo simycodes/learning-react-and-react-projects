@@ -1,0 +1,67 @@
+EACH ERROR THAT OCCURS RETURN AN ERROR OBJECT - USING THIS OBJECT WE CAN DISPLAY SPECIFIC ERRORS FOR THE USER
+TO UNDERSTAND.
+
+ // CHECK IF THE RETURNED ERROR IS VALIDATOR ERROR & CHANGE ERROR TYPE
+    if(err.name === 'ValidationError') {
+        // IF ERROR RECEIVED IS A VALIDATION ERROR CHANGE IT TO BAD_REQUEST ERROR AND CHANGE ERR MESSAGE
+        defaultError.statusCode = StatusCodes.BAD_REQUEST;
+        defaultError.msg = err.message;
+    }
+
+
+---
+ import { StatusCodes } from 'http-status-codes';
+const errorHandlerMiddleware = (err, req, res, next) => {
+    console.log(err);
+    // SETTING A DEFAULT ERROR HANDLER OBJECT
+    const defaultError = {
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        msg: 'Something went wrong, please try again later',
+    }
+
+    // CHECK IF THE RETURNED ERROR IS VALIDATOR ERROR & CHANGE ERROR TYPE
+    if(err.name === 'ValidationError') {
+        // IF ERROR RECEIVED IS A VALIDATION ERROR CHANGE IT TO BAD_REQUEST ERROR AND CHANGE ERR MESSAGE
+        defaultError.statusCode = StatusCodes.BAD_REQUEST;
+        defaultError.msg = err.message;
+    }
+    // DISPLAY THE ERROR
+    res.status(defaultError.statusCode).json({msg: err});
+}
+
+
+THE ERROR OBJECT
+
+{
+    "msg": {
+        "errors": {
+            "name": {
+                "name": "ValidatorError",
+                "message": "Please Provide Your Name",
+                "properties": {
+                    "message": "Please Provide Your Name",
+                    "type": "required",
+                    "path": "name"
+                },
+                "kind": "required",
+                "path": "name"
+            },
+            "email": {
+                "name": "ValidatorError",
+                "message": "Please provide a valid email",
+                "properties": {
+                    "message": "Please provide a valid email",
+                    "type": "user defined",
+                    "path": "email",
+                    "value": "massive-gmail.com"
+                },
+                "kind": "user defined",
+                "path": "email",
+                "value": "massive-gmail.com"
+            }
+        },
+        "_message": "User validation failed",
+        "name": "ValidationError",
+        "message": "User validation failed: name: Please Provide Your Name, email: Please provide a valid email"
+    }
+}

@@ -1,0 +1,41 @@
+PUT THE MAIN APP ROUTER IN THE App.js FILE
+
+import { BrowserRouter, Routes, Route, useNavigate, NavLink } from 'react-router-dom';
+
+1) BrowserRouter : THIS COMPONENT HOLDS THE ROUTES COMPONENT(AND ITS SUB COMPONENTS) TO BE USED IN THE APP
+
+2) Routes : THIS COMPONENT HOLDS ROUTE COMPONENTS (THAT HOLD AN APP URL ROUTE)  TO BE USED IN THE APP
+
+3) Route : THIS COMPONENT HOLDS EACH ROUTE(URL) TO BE USED IN THE APP. HAS THE path and element props HOLDS THE URL
+AND THE CORRESPONDING COMPONENT TO ATTACH TO EACH URL.
+
+<BrowserRouter>
+    <Routes>
+      <Route path="/register" element={<Register />} /> {/* element can hold any jsx code only - not just page components,<div> -code here- </div> can be used*/}
+      <Route path="/landing" element={<Landing />} />
+    </Routes>
+</BrowserRouter>
+
+4) useNavigate : THIS IS USED TO NAVIGATE OR REDIRECT A USER TO ANOTHER PAGE/COMPONENT OR URL
+
+	navigate('/');
+
+
+   NOTE; navLink AND navigate('/'); 
+   We use both of them to route pages. But the difference is when we use NavLink we get some advantages like we can 
+   design our navigation with active state. Because the NavLink component provides a active class inside it.So we can
+   design our navigation when it is active and we can keep track the active pages.
+
+5) navLink and isActive react state variable: navLink NAVIAGES A USER TO A GIVEN LINK.HAS to PROP THAT GETS A JS 
+   VARIABLE HAVING A LINK.
+
+  <NavLink to={path}>all jobs</NavLink>
+  <NavLink to='add-job'>all jobs</NavLink>
+
+navLink is also wrapper that knows if it's "active" or not. USING THE isActive REACT STATE VARIABLE, IF TRUE
+INDICATE THE LINK IS ACTIVE, IF FALSE INDICATES THE LINK IS NOT ACTIVE.HENCE IF ITS TRUE ADD THE CSS CLASS THAT
+SHOWS TO THE USER THAT THIS LINK IS ACTIVE
+
+<NavLink to={path} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+
+6) 

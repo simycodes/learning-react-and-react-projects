@@ -1,0 +1,23 @@
+THE BELOW APPROACH IS THE MANUAL WAY OF SENDING DATA FROM THE FRONT-END TO THE BACKEND USING AXIOS.
+THESE STEPS ARE TO BE REPEATED IN EVERY ROUTE/REQUEST THAT NEEDS TO SEND DATA TO THE API/BACKEND.
+
+
+const updaterUser = async (currentUser) => {
+    try {
+       // currentUser IS SECOND ARGUMENT(data to send to database), headers IS A THE OPTIONS
+      // ARGUMENT - HELPS SEND DATA(token&update data) FROM THE FRONT-END TO THE BACKEND USING headers OBJECT
+
+      const { data } = await axios.patch('/api/v1/auth/updateUser', currentUser, {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error.response);
+      }
+   };
+
+
+THE GLOBAL APPROACH OF SETTING UP AXIOS IS ALSO USED TO AVOID REPETTIONS OF SAME ACTIONS-CODE WHEN SENDING DATA TO THE
+API/DATABASE USING AXIOS.

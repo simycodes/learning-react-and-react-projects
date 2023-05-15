@@ -1,0 +1,21 @@
+https://www.mongodb.com/docs/manual/reference/operator/query/regex/
+$regex Provides regular expression capabilities for pattern matching strings in queries.
+
+To use $regex, use one of the following syntaxes:
+
+{ <field>: { $regex: /pattern/, $options: '<options>' } }
+{ <field>: { $regex: 'pattern', $options: '<options>' } }
+{ <field>: { $regex: /pattern/<options> } }
+
+Example
+
+if(search) {
+    queryObject.search = { $regex: search, $options: 'i'}
+    // $regex helps match an letter character put in the search to what is in the database(field/property)
+    // i - means case insensitive, get results despite the search being in lower or upper case
+  }
+  // NO AWAIT - JUST GETS THE QUERY(queryObject) - JOBS WONT BE GIVEN AS AWAIT IS NOT ATTACHED
+  let result = Job.find(queryObject);
+
+  const jobs = await result;
+  res.status(StatusCodes.OK).json({ jobs, totalJobs:jobs.length, numOfPages: 1 })

@@ -1,0 +1,19 @@
+pageNotFoundMiddleware is used for requests that do not match any routes defined in the server 
+
+PAGE NOT FOUND ROUTE - HANDLES ALL REQUEST NOT DEFINED IN THE SERVER - NOT ERRORS
+app.use(notFoundMiddleware); -- NOT URL '/' IS EVEN DEFINED HERE BEFORE PLACING THE FUNCTION ARGUMENT
+
+WHILE
+
+errorMiddleware is used  to handle requests that result in errors.
+
+ // errorHandler IS USED TO WHEN HANDLE ERRORS ARISING FROM THE SERVER AFTER A USER REQUEST
+ // errorHandler TAKES US 4 ARGUMENTS & ONCE 4 ARGUMENTS ARE USED NODE KNOWS FUNCTION IS 
+ // AN ERROR HANDLER
+
+const errorHandlerMiddleware = (err, req, res, next) => {
+    console.log(err)
+    res.status(500).json({msg: 'There Was An Error'});
+}
+
+export default errorHandlerMiddleware

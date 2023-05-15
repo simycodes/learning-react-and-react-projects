@@ -1,0 +1,47 @@
+After a page refresh, user data and JWT is kept by the local storage.
+When cookies are used to store the JWT, and localstorage is completely removed in keeping the user data and JWT.A new request to the server must be sent always after a page refresh in order to get the get user details plus token inorder for the user to remain logged in, even after a page refresh.
+
+
+IF ALL DATA USER IS LOST, HOW IS SPECEFIC USER DATA ACQUIRED FROM THE API? Since the JWT is token in the cookie, after a page refresh, a request is sent to the api to get user specific data with the JWT being sent by the browser through the cookie.
+
+The cookie is used to get the userIs from the api(database) using the jwt.verify() method, as the userId is/was used in the process of creating the token itself, hence through the token again, we can get the userId (which given inside the payload-result of jwt.verify() method and added to the req variable of the req & res) and then use the userId to get user specific data from the api and be able to maintain the react frontend app and make the user stay logged in even after a page refresh.
+
+Hence, JWT can give us access to the userID of the logged in user, using the jwt.verify() method.Then the this user Id can be used to fetch user specific details from the api/database and be able to maintain the users login session on the frontend.
+
+NOTE: the user data(user object) is checked in the protected route to see if it has data(true) or not, if not the user is logged out, hence it needs to contain data if the user needs to stay logged in.
+The protected routes encloses are pages accessed only when a user is logged in.
+
+// THE PROTECTED ROUTE - ProtectedRoute.js(check for detailed component)
+function ProtectedRoute({ children }) {
+  if(!user) {
+    return <Navigate to="/landing" />
+  }
+}
+
+IN LOGIN CONTROLLER
+ // GET THE USER FROM THE DATABASE USING THE EMAIL ENTERED -
+ // .select('+password'); HELPS GET RETURN PWD FROM DB AS IT RESTRICTED BY DEFAULT +, SET BY select in user model
+  const user = await User.findOne({ email }).select('+password');
+
+// CREATE SESSION USER TOKEN - user.createJWT(); CALLS UserSchema.methods.createJWT = function () {} IN user model
+  
+const token = user.createJWT();
+
+IN USER MODEL
+UserSchema.methods.createJWT = function () {
+    // console.log(this); // THIS PRINTS THE NEWLY CREATED USER OBJECT WITH ENTERED USER DETAILS 
+    // USER ID,THE JWT SECRET KEY CODE AND THE EXPIRY TIME USED TO CREATE A JWT TOKEN
+    return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME  });
+}
+
+
+IN auth.js MIDDLEWARE
+
+// jwt.verify() method returns a payload which holds userId()that is then used to 
+// modify the database,other returned values is when the token was initialized and when it will expire.
+ const payload = jwt.verify(token, process.env.JWT_SECRET);
+
+// payload is: { userId: '63e69ee471eea96576349459', iat: 1676480115, exp: 1676566515 }
+// testUser will either be true or false if test user is logged in or not
+req.user = { userId: payload.userId, testUser };
+

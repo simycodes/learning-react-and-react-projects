@@ -1,0 +1,13 @@
+this.modifiedPaths() - when used in the schema is used to show the path/VALUES that is being updated. It gives an array 
+of the paths that will be updated such as ['name'] if the name of the user will be updated or is being updated.
+
+AND this.isModified('name') checks if a given path is being updated - in this case is name of user being updated
+
+UserSchema.pre('save', async function(){
+    // console.log(this.modifiedPaths()); // DISPLAY VALUES/PATH/FIELD BEING UPDATED IN THE UPDATE ROUTE
+    // console.log(this.isModified('name')); // checks if a given path/field is being updated - in this case is name of user being updated
+    if(!this.isModified('password')) return 
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);  
+});
+

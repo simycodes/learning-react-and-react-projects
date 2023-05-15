@@ -1,0 +1,12 @@
+-- ACTING ON DATA FROM API INSIDE POSTMAN
+
+IN THE test SECTION OF POSTMAN
+
+In below code, pm is postMan
+
+
+const jsonData = pm.response.json();
+pm.globals.set('token', jsonData.token);
+
+
+- ABOVE CODE GETS THE jwt token 

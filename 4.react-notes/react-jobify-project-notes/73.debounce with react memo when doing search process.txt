@@ -1,0 +1,19 @@
+-useMemo tells functions- usually those defined outside a component to only change/re-rendered only if they called with a different argument.Otherwise their result be stored in a variable and used instead.
+
+ILLUSTRATION
+
+
+ // SEARCH WITH DEBOUNCE FUNCTIONALITY - THIS TRIGGERS THE SEARCH FUNCTIONALITY TO OCCUR
+  // AFTER THE USER HAS FINISHED WHAT HE WAS TYPING AND A SECOND IS PASSED, INSTEAD OF DOING
+  // A SEARCH EVEN AFTER WHEN JUST A SINGLE LETTER IS TYPED - HELPS REDUCE CALLS TO THE SERVER
+  const debounce = () => {
+    let timeoutID;
+    return (e) => {
+      setLocalSearch(e.target.value);
+      clearTimeout(timeoutID);
+      timeoutID = setTimeout(()=> {
+        handleChange({ name: e.target.name, value: e.target.value });
+      }, 1000);
+    };
+  }
+  const optimizedDebounce = useMemo(()=>debounce(), []);

@@ -1,0 +1,9 @@
+https://mongoosejs.com/docs/middleware.html
+
+This is where the hashing of paswords is done - in these middleware functions.
+
+Middleware (also called pre and post hooks) are functions which are passed control during execution of asynchronous
+ functions. Middleware is specified on the schema level and is useful for writing plugins.
+
+We use thes middleaware functions to process or interact with data before it is saved in database and or after getting
+ it from the database.

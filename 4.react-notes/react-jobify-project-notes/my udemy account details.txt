@@ -1,0 +1,9 @@
+
+email: simycodes@gmail.com
+password:learningfullstackmern2023
+
+
+
+FOR REACT NATIVE
+email: dorismulevoigt1@gmail.com
+password:dolinaiscodingnow

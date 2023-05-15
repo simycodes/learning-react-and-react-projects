@@ -1,0 +1,24 @@
+https://mongoosejs.com/docs/middleware.html
+Query middleware
+
+
+Query middleware is supported for the following Query functions. Query middleware executes when you
+call exec() or then() on a Query object, or await on a Query object. In query middleware functions, 
+this refers to the query.
+
+count
+countDocuments
+deleteMany
+deleteOne
+estimatedDocumentCount
+find
+findOne
+findOneAndDelete
+findOneAndRemove
+findOneAndReplace
+findOneAndUpdate
+remove
+replaceOne
+update
+updateOne
+updateMany

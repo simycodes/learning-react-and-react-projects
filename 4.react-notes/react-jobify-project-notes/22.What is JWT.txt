@@ -1,0 +1,88 @@
+https://www.npmjs.com/package/jsonwebtoken
+https://jwt.io/
+https://jwt.io/introduction
+
+What is JSON Web Token?
+JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely
+ transmitting information between parties as a JSON object. This information can be verified and trusted because
+ it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair
+ using RSA or ECDSA.
+
+A WEB TOKEN IS A CODED STRING THAT IS USED BY A LOGED IN USER TO COMMUNICATE FROM THE FRONT END TO THE SERVER EVERYTIME
+THAT HE MAKES A REQUEST TO THE SERVER.
+
+JAVASCRIPT WEB TOKENS  are like the session_user_id in php that are used to identify a user across various pages of a 
+web site.The same way the session_user_id is used when requesting or sending a resource to the server and database, the
+JWT are used in the same way in NODE.
+They ensure a loged in user stays logged across all pages until he logs out(since the server is stateles),JWT remain
+persist across all pages just like login_session values.
+
+Authorization:
+ This is the most common scenario for using JWT. Once the user is logged in, each subsequent request
+ will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
+ Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily
+ used across different domains.
+
+What is the JSON Web Token structure?
+In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
+
+Header
+Payload
+Signature
+
+Therefore, a JWT typically looks like the following.
+
+xxxxx.yyyyy.zzzzz
+
+1.Header
+The header typically consists of two parts: the type of the token, which is JWT, and the signing algorithm being
+ used, such as HMAC SHA256 or RSA.
+
+For example:
+
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+Then, this JSON is Base64Url encoded to form the first part of the JWT.
+
+2.Payload
+The second part of the token is the payload, which contains the claims. Claims are statements about an entity
+ (typically, the user) and additional data. There are three types of claims: registered, public, and private claims.
+Registered claims: exp (expiration time),
+
+An example payload could be:
+
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+The payload is then Base64Url encoded to form the second part of the JSON Web Token.
+
+Signature
+To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm
+ specified in the header, and sign that.
+
+For example if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way:
+
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+
+The signature is used to verify the message wasn't changed along the way, and, in the case of tokens signed with a 
+private key, it can also verify that the sender of the JWT is who it says it is.
+
+
+JWT TOKENS ARE STORED IN TWO PLACES
+1) IN THE STATE COMPONENTS - CHECK IN CONSOLE
+2) AND IN THE LOCAL STORAGE
+
+Usage
+jwt.sign(payload, secretOrPrivateKey, [options, callback])
+(Asynchronous) If a callback is supplied, the callback is called with the err or the JWT.
+
+(Synchronous) Returns the JsonWebToken as string
+
+payload could be an object literal, buffer or string representing valid JSON.

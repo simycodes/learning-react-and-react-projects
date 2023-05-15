@@ -1,0 +1,65 @@
+Certain commands/scripts need to be run on the server where the MERN app will be hosted.
+
+Commands to be run will include the installing of dependancies of the MERN app on the server and the running of the app on the server.
+
+BEFORE DEPLOYING
+
+- Make sure program is running locally
+
+- delete the build and nodemodules in the client folder - optional
+
+- delete the node modules and package-lock.json file - optional
+
+- Then ad the below script to the package.json on the server.
+
+THE SCRIPTS BELOW INSTALS PACKAGES IN THE CLIENT FOLDER, CREATES THE BUILD FOLDER INSIDE CLIENT FOLDER AND THEN INSTALLS PACKAGES ON THE SERVER OF THE MERN APP - ALL THIS BEING DONE ON THE SERVER WHERE THIS MERN APP WILL BE HOSTED-HENCE  PACKAGES WILL BE INSTALLED ON THE HOSTED SERVER.
+
+"scripts":{
+  "setup-production":"npm run install-client && npm run build-client && npm install",
+  "install-client":"cd client && npm install",
+}
+
+THE OTHER COMMANDS USED IN THE setup-production AND install-client COMMANDS
+
+"install-client":"cd client && npm install",
+"build-client": "cd client && npm run build",
+
+
+- Then run the command: setup-production  - This will do the packages installations and build.
+  This will have same effect on the local machine and on the server.
+
+- Then run the below command to start the server, which will then start the whole MERN app (as client has build folder already)
+
+node server
+
+
+- remove the local exisiting git repos in the client and the server and create a new one that will jold both the server and client and be shown on the remote repo on the github. Initially when folders are created by init, a git repo is created and this must be removed and a general one must be created that will hold both the server and client.
+
+This git folder is hidden, but can been using by using the see hidden files and do the deletion there on in the command line.
+
+Then check if the client is connected to a local git repo(created by git init) and remove that connection (remove all existing repos (CHECK CLIENT !!!)) and make sure the client repo is inside the api folder and the app is working locally.
+
+The way to delete a Git repo locally is to simply remove the hidden .git folder.
+
+  to remove git client exisiting repo, use the command below after geting into the client folder
+
+  cd client
+  rm -rf .git
+
+
+- create a git repo in the server that will hold both the server and the react app
+
+  COMMANDS
+
+  git init
+  git add .
+  git commit -m "first commit"
+
+  THEN PUSH THE APP REPO (REMOTE REPO ALREADY CREATED)
+
+  git remote add origin https://github.com/simycodes/mern-course-jobify-production.git
+  git branch -M main
+  git push -u origin main
+
+- push the app to git hub and host the app on render!
+

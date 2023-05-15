@@ -1,0 +1,17 @@
+Express-Async-Errors Package automatically add try and catch logic to our controller logies
+
+A dead simple ES6 async/await support hack for ExpressJS
+
+This package also automatically handles and sends error using next() to the next handler.
+
+
+const express = require('express');
+require('express-async-errors');
+const User = require('./models/user');
+const app = express();
+ 
+app.get('/users', async (req, res) => {
+  const users = await User.findAll();
+  res.send(users);
+});
+

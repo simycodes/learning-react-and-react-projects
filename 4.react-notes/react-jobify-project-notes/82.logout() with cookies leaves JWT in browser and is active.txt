@@ -1,0 +1,13 @@
+A logout() functionality with cookies having the JWT, leaves JWT in browser and active, hence a reload of the page will make a request to get user data using the JWT and the user will be back again in the app like the log out never happened.
+
+Hence its important, at this point to have a logout routes that will destroy the JWT cookiw once the user logs out.
+
+
+// ROUTE TO LOG OUT THE USER( DESTROY THE JWT COOKIE)
+const logout = async (req, res) => {
+  res.cookie('token', 'logout', { // in making cookie - logout will hold actual token to be stored as cookie - here logout is just an empty string
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res.status(StatusCodes.OK).json({ msg: 'user logged out!' });
+};

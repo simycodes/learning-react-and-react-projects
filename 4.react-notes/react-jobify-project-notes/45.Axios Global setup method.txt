@@ -1,0 +1,29 @@
+const AppProvider = ({ children }) => {
+
+// GLOBAL SET UP OF AXIOS AND SENDING DATA/LOGIN TOKEN TO THE API/BACKEND
+  axios.defaults.headers['Authorization'] = `Bearer ${state.token}`;
+
+const updaterUser = async (currentUser) => {
+    try {
+      // currentUser IS SECOND ARGUMENT(data to send to database), headers IS A THE OPTIONS
+      // ARGUMENT - HELPS SEND DATA(token&update data) FROM THE FRONT-END TO THE BACKEND USING headers OBJECT
+      const { data } = await axios.patch('/api/v1/auth/updateUser', currentUser);
+      console.log(data);
+    } catch (error) {
+      console.log(error.response);
+      }
+   };
+
+
+return ()
+
+}
+
+THIS HAS THE DISADVANTAGE OF SENDING THE BEARER TOKEN TO OTHER API IF ANOTHER SEARCH OF DATA IS DOWN IN THE SAME BODY]
+OF CODE
+
+ry {
+      const { data } = await axios.patch('/api/v1/auth/updateUser', currentUser);
+	 // THIS WILL REQUEST BELOW WILL SEND REQUEST WITH BEAR TOKENS TO ANOTHER NOT OWN/CREATED API/WEBSITE - NOT GOOD FOR TOKENS
+	 const { dataTwo } = await axios.patch('/api/typesoffruits', currentUser);
+ }

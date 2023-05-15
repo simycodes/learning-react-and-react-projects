@@ -1,0 +1,7 @@
+ Array.from CREATES AN ARRAY FROM AN OBJECT, STRING , NODE LIST ETC
+
+
+// CREATES A PAGES ARRAY - Array.from CREATES AN ARRAY FROM AN OBJECT, STRING , NODE LIST ETC
+  const pages = Array.from({ length: numOfPages }, (_, index) => {
+    return index + 1;
+  });

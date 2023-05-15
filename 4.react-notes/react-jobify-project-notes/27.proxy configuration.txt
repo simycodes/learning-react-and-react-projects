@@ -1,0 +1,21 @@
+server configuration settings, this is the best way to solve cors issues and also helps have short urls from the front
+ end when requesting data from the api as the proxy configuration will hold the begining part of all urls that frontend
+will use to request resources from the api.
+
+
+https://create-react-app.dev/docs/proxying-api-requests-in-development/
+Proxying API Requests in Development - React Apps
+
+To tell the development server to proxy any unknown requests to your API server in development, add a proxy field
+ to your package.json, for example:
+
+  "proxy": "http://localhost:4000",
+
+This way, when you fetch('/api/todos') in development, the development server will recognize that it’s not a static
+ asset, and will proxy your request to http://localhost:4000/api/todos as a fallback. The development server will 
+only attempt to send requests without text/html in its Accept header to the proxy.
+
+Conveniently, this avoids CORS issues and error messages like this in development:
+Fetch API cannot load http://localhost:4000/api/todos. No 'Access-Control-Allow-Origin' header is present on the 
+requested resource. Origin 'http://localhost:3000' is therefore not allowed access. If an opaque response serves 
+your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.

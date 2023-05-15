@@ -1,0 +1,2 @@
+These errors happening in the console are passed to the middlerware errorHandlerMiddleware to handle and display 
+specifically what each error is coming from the controllers.

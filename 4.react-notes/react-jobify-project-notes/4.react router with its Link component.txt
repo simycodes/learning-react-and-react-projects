@@ -1,0 +1,19 @@
+THIS CAN BE DONE -- LINK INSIDE THE BROWSERROUTER
+
+function App() {
+  return (
+  <BrowserRouter>
+  <nav>
+    <Link to='/'>Dashboard</Link>
+    <Link to='/register'>Register</Link>
+    <Link to='/landing'>Home</Link>
+  </nav>
+    <Routes>
+      <Route path="/" element={<div>Dashboard</div>} />  {/* element can hold any jsx code only - not just page components, hence use of <div></div>*/}
+      <Route path="/register" element={<div>Register</div>} />
+      <Route path="/landing" element={<Landing />} />
+      <Route path="*" element={<div>Error</div>} />
+    </Routes>
+  </BrowserRouter>
+  );
+}

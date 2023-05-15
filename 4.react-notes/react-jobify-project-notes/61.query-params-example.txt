@@ -1,0 +1,67 @@
+Example1 below
+
+GET /surfreport/beachId?days=3&units=metric&time=1400
+
+What do we see in this GET request?  
+
+`/surfreport/beachID` `/surfreport` is the endpoint, and `beachID` is the path parameter. Path parameters are part of the endpoint and are [required](https://swagger.io/docs/specification/describing-parameters/).
+`?` is where our query string begins.
+
+`days=3` is a query parameter (`days`) that is taking the argument `3` to sort the surf report retrieved from the API into results from the next three days.
+
+`units=metric` is a query parameter that displays our results in Metric units.
+
+`time=1400` is a query parameter that displays results at time 1400.
+
+`&` is joining our individual query parameters into one query string.
+
+Example 2
+
+// FUNCTION TO GET ALL JOBS
+const getAllJobs = async (req, res) => {
+  // GET QUERY PARAMS SENT BY THE USER
+  const { search, status, jobType, sort } = req.query
+
+  // SET UP THE QUERY OBJECT THAT WILL BE USED IN GETTING FILTERED DATA FROM THE DATABASE
+  const queryObject = {
+    createdBy:req.user.userId // GET ALL JOBS FOR THE LOGGED IN USER
+  }
+  // ADD OR CHAIN SORT/FILTER CONDITIONS TO ADD TO THE QUERY OBJECT - queryObject
+  // if status is not all(which is pending etc) then add it to the query object for filtering
+  // if(status !== 'pending' || status !== 'declined' || status !== 'interview') {}
+  if(status !== 'all') { 
+    queryObject.status = status;
+  }
+  if(jobType !== 'all') {
+    queryObject.jobType = jobType;
+  }
+  if(search) {
+    queryObject.position = { $regex: search, $options: 'i'}
+    // $regex helps match an letter character put in the search to what is in the database(position field/property)
+    // i - means case insensitive, get results despite the search being in lower or upper case
+  }
+  // NO AWAIT - JUST GETS THE QUERY(queryObject) - JOBS WONT BE GIVEN AS AWAIT IS NOT ATTACHED
+  let result = Job.find(queryObject);
+  // chain sort conditions, NOTE: - is descending
+  if(sort === "latest") {
+    result = result.sort('-createdAt');
+  }
+  if(sort === "oldest") {
+    result = result.sort('createdAt');
+  }
+  if(sort === "a-z") {
+    result = result.sort('position');
+  }
+  if(sort === "z-a") {
+    result = result.sort('-position');
+  }
+
+  // NOW GET ALL JOBS FOR THE LOGGED IN USER ACCORDING TO HIS FILTERING PREFERENCES-QUERY(queryObject)
+  const jobs = await result;
+  res.status(StatusCodes.OK).json({ jobs, totalJobs:jobs.length, numOfPages: 1 })
+
+  // BASIC APPROACH TO GET ALL JOBS FOR THE LOGGED IN USER - NO QUERY PARAMS
+  // const jobs = await Job.find({createdBy:req.user.userId});
+  // res.status(StatusCodes.OK).json({ jobs, totalJobs:jobs.length, numOfPages: 1 })
+}
+ 

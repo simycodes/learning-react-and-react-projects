@@ -1,0 +1,4 @@
+handling 401-authentication error  when user token has expired and when an authorised request is made.
+
+TO HANDLE THIS ERROR - THE BEST WAY IS TO LOG OUT THE USER, AS HIS TOKEN TO BE ON A SESSION HAS EXPIRED OR THE USER
+IS JUST TRYING TO MAKE REQUESTS THAT HE SHOULD BE DOING - HENCE LOGOUT THE USER.

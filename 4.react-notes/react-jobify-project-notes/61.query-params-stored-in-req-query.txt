@@ -1,0 +1,3 @@
+query params are sent in the query object of the body the req body, hence in the backend get the query params in the backend as shown below
+  
+const { status } = req.query

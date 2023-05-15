@@ -1,0 +1,4 @@
+app.use() - means get all the https routes - whether they are get or post etc
+
+The app. use() method mounts or puts the specified middleware functions at the specified path.
+This middleware function will be executed only when the base of the requested path matches the defined path

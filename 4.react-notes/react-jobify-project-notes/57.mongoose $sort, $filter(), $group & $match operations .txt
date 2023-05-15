@@ -1,0 +1,31 @@
+THE AGGREGATE() METHOD CAN HOLD DIFFERENT FILTERING OPERATIONS TO FILTER OUT DATA COMING OUT FROM THE DATABASE.
+THESE OPERATIONS CAN BE USED AS OBJECTS IN THE AGREGATE THAT EXECUTE ONE AFTER THE OTHER IN ORDER TO HELP FILTER
+DATA FROM THE DB
+
+$match,$group, $sum , $sort and $limit ARE SOME OF THE COMMON MONGOOSE OPERATIONS THAT USED IN THE FILTERING OF DATA.
+THEY ARE ASSIGNED VALUES THAT ARE USED FOR FILTERING.
+$limit: 6 AND $sort: { '_id.year': -1, '_id.month': -1 } USULAYY PLACED AS OBJECTS INSIDE THE AGREGATE METHOD
+ { $sort: { '_id.year': -1, '_id.month': -1 } }, 1 MEANS SORT ASCENDING ,-1 SORT IN DESCENDING
+ { $limit: 6
+
+OTHER OPERATORS INCLUDE count,year and month that help filter data by counting number of document occurences and year and month.
+
+let monthlyApplications = await aggregate([
+    // mongoose.Types.ObjectId() converts user id(a string) into a db object id
+    { $match: { createdBy:mongoose.Types.ObjectId(req.userId) }},
+    {
+      $group: {
+        _id: {
+          year: {
+            $year: '$createdAt',
+          },
+          month: {
+            $month: '$createdAt',
+          },
+        },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { '_id.year': -1, '_id.month': -1 } },
+    { $limit: 6 },
+  ]);

@@ -1,0 +1,50 @@
+NOTE: FILTERING PROCESS IN THE BACKEND JUST INVOLVES THE DYNAMIC CHANGING OF THE WHERE CLAUSES WHERE SEARCH FOR
+DATA IN THE DATABASE.AND THESE CLAUSES ARE PASSED IN THE find() METHOD WHEN GETING DATA FROM THE DATABASE.
+
+// FUNCTION TO GET ALL JOBS
+const getAllJobs = async (req, res) => {
+  // GET QUERY PARAMS SENT BY THE USER
+  const { search, status, jobType, sort } = req.query
+
+  // SET UP THE QUERY OBJECT THAT WILL BE USED IN GETTING FILTERED DATA FROM THE DATABASE
+  const queryObject = {
+    createdBy:req.user.userId // GET ALL JOBS FOR THE LOGGED IN USER
+  }
+  // ADD OR CHAIN SORT/FILTER CONDITIONS TO ADD TO THE QUERY OBJECT - queryObject
+  // if status is not all(which is pending etc) then add it to the query object for filtering
+  // if(status !== 'pending' || status !== 'declined' || status !== 'interview') {}
+  if(status !== 'all') { 
+    queryObject.status = status;
+  }
+  if(jobType !== 'all') {
+    queryObject.jobType = jobType;
+  }
+  if(search) {
+    queryObject.position = { $regex: search, $options: 'i'}
+    // $regex helps match an letter character put in the search to what is in the database(position field/property)
+    // i - means case insensitive, get results despite the search being in lower or upper case
+  }
+  // NO AWAIT - JUST GETS THE QUERY(queryObject) - JOBS WONT BE GIVEN AS AWAIT IS NOT ATTACHED
+  let result = Job.find(queryObject);
+  // chain sort conditions, NOTE: - is descending
+  if(sort === "latest") {
+    result = result.sort('-createdAt');
+  }
+  if(sort === "oldest") {
+    result = result.sort('createdAt');
+  }
+  if(sort === "a-z") {
+    result = result.sort('position');
+  }
+  if(sort === "z-a") {
+    result = result.sort('-position');
+  }
+
+  // NOW GET ALL JOBS FOR THE LOGGED IN USER ACCORDING TO HIS FILTERING PREFERENCES-QUERY(queryObject)
+  const jobs = await result;
+  res.status(StatusCodes.OK).json({ jobs, totalJobs:jobs.length, numOfPages: 1 })
+
+  // BASIC APPROACH TO GET ALL JOBS FOR THE LOGGED IN USER - NO QUERY PARAMS
+  // const jobs = await Job.find({createdBy:req.user.userId});
+  // res.status(StatusCodes.OK).json({ jobs, totalJobs:jobs.length, numOfPages: 1 })
+}

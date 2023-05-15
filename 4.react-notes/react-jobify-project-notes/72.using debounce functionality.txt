@@ -1,0 +1,5 @@
+Debounce functionality in JS helps in delay the execution of logic/reading of logic under a given condition.
+
+It helps run a function/code after a given amount of time(eg 2s) after an event happened such as a click event.
+
+Debouce is used to always reduce the number of actions a user does(in a given amount of time eg 2 or 3 seconds) to 1, no matter how may times a user does that action.Example, a user clicks a button 10 times very fast, instead of getting 10 actions produced by the button, the user only gets 1 action of clicking the button as the result of those 10 times that he clicked.

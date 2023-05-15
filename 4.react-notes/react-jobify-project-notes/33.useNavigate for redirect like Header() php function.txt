@@ -1,0 +1,2 @@
+useNavigate is used for redirecting just like  the Header() php function, But in this case using a forntend
+library  REACT to do the redirecting process but according/ depending on the data from the server/database.

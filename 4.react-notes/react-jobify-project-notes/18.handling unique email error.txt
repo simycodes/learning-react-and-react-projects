@@ -1,0 +1,16 @@
+WHEN A NON UNIQUE EMAIL IS USED THE "code": 11000IS RETURNED - ITS ON THIS ERROR OBJECT THAT CORRECT MESSAGE MUST BE
+RETURNED TO THE USER
+
+{
+    "msg": {
+        "index": 0,
+        "code": 11000,
+        "keyPattern": {
+            "email": 1
+        },
+        "keyValue": {
+            "email": "massive@gmail.com"
+        }
+    }
+}
+

@@ -1,0 +1,3 @@
+When the frontend not finding a route when fetching data on the server(when that route is not defined on the server)
+The frontend begin will use that route as a frontend defined route and if nothing is found on the frontend also, then
+a lot of errors are displayed.

@@ -1,0 +1,70 @@
+0. MAKING ROUTER AND SUB ROUTER
+
+  -REACT - DEFINED AND USED IN THE SAME FILE App.js
+
+	<BrowserRouter>
+    <Routes>
+      <Route path="/" element={
+        <ProtectedRoute> {/* GET TO INDEX & SUB PAGES AFTER LOGIN, ELSE REDIRECT USER */}
+          <SharedLayout />  
+        </ProtectedRoute>}> 
+        {/* ADDING SUB PAGES TO THE HOME PAGE(WHICH DASHBOARD IN THIS CASE) */}
+        <Route index element={<Stats />}/> {/* index keyword makes stats to be home page */}
+        <Route path="all-jobs" element={<AllJobs />}/>
+        <Route path="add-job" element={<AddJob />}/>
+        <Route path="profile" element={<Profile />}/>
+      </Route> 
+      <Route path="/register" element={<Register />} /> {/* element can hold any jsx code only - not just page components,<div> -code here- </div> can be used*/}
+      <Route path="/landing" element={<Landing />} />
+      <Route path="*" element={<Error />} />
+    </Routes>
+  </BrowserRouter>
+
+
+  -ANGULAR - DEFINED IN AND USED IN SEPARATE FILES - defined in app.ts
+
+
+	const appRoutes: Routes = [
+    {path: '', redirectTo: '/recipes', pathMatch: 'full'}, // THIS IS THE DEFAULT ROUTE
+    {path: 'recipes', component: RecipesComponent, children: [
+        { path: '', component: RecipeStartComponent},
+        { path: 'new', component: RecipeEditComponent},
+        { path: ':id', component: RecipeDetailComponent},
+        { path: ':id/edit', component: RecipeEditComponent},
+        // PLACE DYNAMIC PARAMS CLOSE TO EACH OTHER AT THE END :id THEN :id/edit
+        // BECAUSE 'new' MAY BE CONSIDERED AS AN ID IF PLACED AFTER :id
+    ]},
+    {path: 'shopping-list', component: ShoppingListComponent}
+];
+
+USING  IN app.html AND ANGULAR USES children ATTRIBUTE WHEN LISTING SUB ROUTES - REACT IS DIRECT
+
+<router-outlet></router-outlet>
+
+
+1. LINKS GOING TO PAGE ROUTES
+
+  -REACT - <NavLink to={path} /> OR Navigate('') />
+
+    <NavLink to={path} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} </NavLink>
+    NOTE: NavLink same as Navigate but, We use both of them to route pages. But the difference is when we use NavLink
+    we get some advantages like we can design our navigation with active state. Because the NavLink component provides
+     a active class inside it.So we can design our navigation when it is active and we can keep track the active pages.
+
+
+  -ANGULAR - routerLink="documents" AND [routerLink]="[index]" FOR DYANAMIC DATA - DIRECTIVE USED
+
+    <a routerLink="documents">Documents</a>
+    <a [routerLink]="[index]" routerLinkActive="active">
+
+
+2. ADDING AN ACTIVE CLASS TO A ROUTE
+
+  -REACT - className={({ isActive }) => isActive ? - ADD TO ONE ROUTE
+
+    <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} </NavLink>
+
+
+  -ANGULAR - routerLinkActive="active" - ADD THIS TO ALL ROUTES
+
+    <li routerLinkActive="active"><a routerLink="documents">Documents</a></li>

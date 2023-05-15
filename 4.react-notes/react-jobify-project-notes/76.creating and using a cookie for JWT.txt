@@ -1,0 +1,66 @@
+NOTE:The cookie is attached to the res variable (of (req, res) {})
+
+// SET UP A COOKIE TO HOLD THE JWT
+
+  const oneDay = 1000 * 60 * 60 * 24;
+  res.cookie('token', token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + oneDay),
+    secure: process.env.NODE_ENV === "production"
+  });
+
+  // secure: process.env.NODE_ENV - when hosted online process.env.NODE_ENV will be true
+  // which will make secure to be true-meaning we send the cookie only on https protocol
+  // SEND BACK THE REQUEST STATUS AND USER DATA TO THE FRONT END
+
+
+httpOnly: true,  --  THIS ENSURES THAT ONLY THE BROWSER CAN ACCESS THE TOKEN BEING CREATED - VERY IMPORTANT!
+
+NOTE: The browser automatically sends its cookies(attachees cookies) to the api on every api request made to the api/backend.
+
+The browsor automatically adds a cookie header to all outgoing requests to the api
+Cookie: firstname=Simon; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZjZDgyMTQyZTY1NTM2ZWY5M2U2NTciLCJpYXQiOjE2ODA2MDY0NTcsImV4cCI6MTY4MDY5Mjg1N30.6QjH14VEVCTUZv-djZcs-pIvInW7wlRRVm1LD13y6S4
+
+
+NOTE:The cookie is attached to the res variable (of (req, res) {})
+
+// ROUTE TO LOGIN A USER
+const login = async (req, res) => {
+  // GET THE USER LOGIN DETAILS
+  const { email, password } = req.body;
+
+  // VALIDATE IF EMAIL AND PASSWORD IS NOT EMPTY
+  if (!email || !password) {
+    throw new BadRequestError('Please provide all values');
+  }
+  // GET THE USER FROM THE DATABASE USING THE EMAIL ENTERED -
+  // .select('+password'); HELPS GET RETURN PWD FROM DB AS IT RESTRICTED BY DEFAULT +, SET BY select in user model
+  const user = await User.findOne({ email }).select('+password');
+  // CHECK IF THE USER EXISTS IN THE DATABASE (IS REGISTERED USER)
+  if (!user) {
+    throw new UnAuthenticatedError('Invalid Credentials');
+  }
+
+  // COMPARE USER ENTERED PASSWORD WITH DB DATABASE - await user. PASSES DB PASSWORD TO 
+  // FUNCTION comparePassword, password IS USER ENTERED PASSWORD
+  const isPasswordCorrect = await user.comparePassword(password);
+  if (!isPasswordCorrect) {
+    throw new UnAuthenticatedError('Invalid Credentials');
+  }
+  // CREATE SESSION USER TOKEN - user.createJWT(); CALLS UserSchema.methods.createJWT = function () {} IN user model
+  const token = user.createJWT();
+  // REMOVE THE PASSWORD FROM THE CLIENT SIDE AFTER COMPARING IS DONE
+  user.password = undefined;
+  // SET UP A COOKIE TO HOLD THE JWT
+  const oneDay = 1000 * 60 * 60 * 24;
+  res.cookie('token', token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + oneDay),
+    secure: process.env.NODE_ENV === "production"
+  });
+  // secure: process.env.NODE_ENV - when hosted online process.env.NODE_ENV will be true
+  // which will make secure to be true-meaning we send the cookie only on https protocol
+  // SEND BACK THE REQUEST STATUS AND USER DATA TO THE FRONT END
+  res.status(StatusCodes.OK).json({ user, token, location: user.location });
+};
+

@@ -1,0 +1,6 @@
+countDocuments() method is used to count number of documents gotten from the database.
+
+// GET THE ACTUAL TOTAL & PAGES AFTER ALL FILTERING,SORTING,SKIP,LIMIT & PAGINATION PROCESSES
+  const totalJobs = await Job.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalJobs / limitNumberOfJobs);
+

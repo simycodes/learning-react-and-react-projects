@@ -1,0 +1,16 @@
+try {
+    await connectDB(process.env.MONGO_URL);
+    await Job.deleteMany();
+
+    const jsonProducts = JSON.parse(
+      await readFile(new URL('./mock-data.json', import.meta.url))
+    );
+    await Job.create(jsonProducts);
+
+    console.log('Success!!!!');
+    process.exit(0); // -- all went succesfully - end process
+
+  } catch (error) {
+    console.log(error);
+    process.exit(1);  -- they were some errors with the process
+  }

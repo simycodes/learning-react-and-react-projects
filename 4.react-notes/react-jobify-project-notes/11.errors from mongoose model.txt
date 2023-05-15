@@ -1,0 +1,26 @@
+when registering, if an error error occurs, that error is mainly emitted by the mongoosee model and such 
+specific errors needed to handled and shown independntly to the user of what went wrong.
+
+const register = async (req, res, next) => {
+    try {
+        const user = await User.create(req.body);
+        res.status(200).json({user});
+    } catch (error) {
+        // next() LINKS A CONTROLLER TO MIDDLEWARE FUNCTIONS
+        // PASS ERROR TO ERROR HANDLER MIDDLEWARE FUNCTION
+        next(error);
+        // res.status(500).json({ msg: error.message}); - This shows the email error message
+    }
+}
+
+
+ // errorHandler IS USED TO WHEN HANDLE ERRORS ARISING FROM THE SERVER AFTER A USER REQUEST
+ // ALL ERRORS COMING FROM THE CONTROLLERS ARE DISPLAYED HERE
+ // errorHandler TAKES US 4 ARGUMENTS & ONCE 4 ARGUMENTS ARE USED NODE KNOWS FUNCTION IS 
+ // AN ERROR HANDLER
+const errorHandlerMiddleware = (err, req, res, next) => {
+    console.log(err)
+    res.status(500).json({msg: err});
+}
+
+export default errorHandlerMiddleware

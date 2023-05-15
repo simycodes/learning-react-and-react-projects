@@ -1,0 +1,34 @@
+The protected route component is used like php login session variables that are checked to see if a user is logged
+or not and redirect the user.
+
+In react the protected route is wrapped around each component that makes up a page whose access can only be given if
+a user is logged else the user is redirected.
+
+
+THE PROTECTED WORKS LIKE BELOW
+
+
+function ProtectedRoute({ children }) {
+//  CHILDREN REFERS TO IMMEDIATE SUB COMPONENT(SharedLayout) 
+  const { user } = useAppContext();
+  // IF NO USER IS LOGGED IN - REDIRECT TO THE LANDING PAGE
+  if(!user) {
+    return <Navigate to="/landing" />
+  }
+  return (
+    children
+  )
+}
+
+WRAPPING IT ON PAGE COMPONENTS
+
+<Route path="/" element={
+        <ProtectedRoute> {/* GET TO INDEX & SUB PAGES AFTER LOGIN, ELSE REDIRECT USER */}
+          <SharedLayout />  
+        </ProtectedRoute>}> 
+        {/* ADDING SUB PAGES TO THE HOME PAGE(WHICH DASHBOARD IN THIS CASE) */}
+        <Route index element={<Stats />}/> {/* index keyword makes stats to be home page */}
+        <Route path="all-jobs" element={<AllJobs />}/>
+        <Route path="add-job" element={<AddJob />}/>
+        <Route path="profile" element={<Profile />}/>
+      </Route> 

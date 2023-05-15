@@ -1,0 +1,5 @@
+: is used to give a variable an alias(other/nick) name to a variable
+
+IN BELOW CODE, data is an alias/nick name to monthlyApplications
+
+const { monthlyApplications: data } = useAppContext();

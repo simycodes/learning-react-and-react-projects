@@ -1,0 +1,19 @@
+putting // eslint-disable-next-line, makes the error of not having a function add a dependancy to be solved.
+Having a function as a dependacy creates an infinite of calls when components rerender.
+
+Illustration
+
+const Stats = () => {
+  const { showStats, isLoading, monthlyApplications } = useAppContext();
+  useEffect(() => {
+    showStats();
+    // eslint-disable-next-line
+  }, []);
+
+
+ /// SOME MORE CODE HERE
+
+
+}
+
+

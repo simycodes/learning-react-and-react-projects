@@ -1,0 +1,18 @@
+running mern app after build in client, is started by ruung the command 
+
+node server
+
+This will make the server to run on the server port number (5000) and the react frontend app will be displayed
+on the browser! The server will automatically fetch the react app, as the build app command was run and the build folder is created in the fronte end react file and it gets shown on the browser by the server, as shown in the code below.
+
+// USE THE express.static() MIDDLE TO CONNECT REACT APP USING THE build FOLDER
+app.use(express.static(path.resolve(__dirname, './client/build')));
+
+// DIRECT ALL GET REQUESTS TO THE REACT FRONT END UP (index.html in client) - CHECK 
+// THIS AFTER ALL THE API OWN DEFINED ROUTES(AFTER TRYING THE API MAIN TWO ROUTES ABOVE)
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
+
+
+express.static() server up the react app (using the build folder) as a public asset to the server, hence it being accessed by the server and displayed on the browser.

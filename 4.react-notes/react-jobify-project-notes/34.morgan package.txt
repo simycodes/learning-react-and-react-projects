@@ -1,0 +1,13 @@
+- http logger middleware for node.js
+- [morgan docs](https://www.npmjs.com/package/morgan)
+
+
+
+OPTIONS
+
+dev
+Concise output colored by response status for development use. The :status token will be colored green for success
+ codes, red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for 
+information codes.
+
+THE DEV OPTION ONLY COLORS THE RESPOSE CODES 400, 201 WHEN TESING ROUTES FROM FRONTEND TO BACKEND.

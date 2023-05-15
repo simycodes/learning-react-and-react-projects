@@ -1,0 +1,14 @@
+import mongoose from 'mongoose';
+
+mongoose.Types.ObjectId() converts user id(a string) into a db object id
+
+$match:{ createdBy:mongoose.Types.ObjectId(req.user.userId)
+
+
+let stats = await Job.aggregate([
+    // GET ALL JOBS CREATED BY THE LOGGED USER
+    // mongoose.Types.ObjectId() converts user id(a string) into a db object id
+    { $match:{ createdBy:mongoose.Types.ObjectId(req.user.userId) }}, 
+    // GROUP THE DOCUMENTS ACCORDING TO THE STATUS PROPERTY
+    { $group: { _id: '$status', count: { $sum: 1 } } },
+  ]);

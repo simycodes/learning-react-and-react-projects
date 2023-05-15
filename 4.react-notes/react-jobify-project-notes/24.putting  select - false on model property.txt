@@ -1,0 +1,11 @@
+Putting the select:false on a propety model makes this property to not be displayed to the user.BUT when creating
+a (on user.create() function - it does not work) new user-instance ,the password is sent out hence, the outing process 
+is done by putting separate properties on the output AS DONE IN PROJECT IN REGISTER CONTROLLER. 
+
+
+password: {
+        type: String,
+        required: [true, 'Please Provide Your Password'],
+        minlength: 6,
+        select: false,
+    },

@@ -1,0 +1,16 @@
+sql 'where' clause in find() method of mongoose is passed by the use of an object having properties stating the
+where condition that must be met when geting data from the database.
+
+In expression below, createdBy:req.user.userId can be read in sql as, where createdBy = req.user.userId, Hence the
+statement
+
+Job.find({createdBy:req.user.userId}); can be interepreted in sql as 
+
+select * from jobs where createdBy = req.user.userId
+
+Multiple Where clauses can be added in the find() method the same way select can be chained with may where clauses.
+
+NOTE: FILTERING PROCESS IN THE BACKEND JUST INVOLVES THE DYNAMIC CHANGING OF THE WHERE CLAUSES WHERE SEARCH FOR
+DATA IN THE DATABASE.AND THESE CLAUSES ARE PASSED IN THE find() METHOD WHEN GETING DATA FROM THE DATABASE.
+
+

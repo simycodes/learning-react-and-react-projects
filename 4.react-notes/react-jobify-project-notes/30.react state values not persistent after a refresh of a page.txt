@@ -1,0 +1,7 @@
+The react state values not persistent after a refresh of a page,hence the data returned from the database after
+logging are lost after a page is refreshed(they are not like session values that still browser untill destroyed and 
+not disturbed by page refreshing).
+
+In order to overcome this effect, the data from the database that keep a user loged in after logging into a site
+are stored as local storage and in case of page refresh, the data keeping user logged in is fetched from the local
+storage and user is kept signed in.

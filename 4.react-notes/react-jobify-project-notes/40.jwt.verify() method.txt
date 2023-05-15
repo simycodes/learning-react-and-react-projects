@@ -1,0 +1,18 @@
+jwt.verify() method is used to compare the JWT token user login in with(and accesses protected routes with) to the
+JWT_SECRET token to ensure the the users JWT has not been tempered with or is not incorrect, but correct and safe
+to be used to access the API routes and database.
+
+jwt.verify() method returns the userId that is then used to modify the database, other returned values is when the 
+token was initilised and when it will expire.
+
+try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    // console.log(payload); 
+    // payload is: { userId: '63e69ee471eea96576349459', iat: 1676480115, exp: 1676566515 }
+    // attach the user request object
+    // req.user = payload
+    req.user = { userId: payload.userId };
+    next();
+  } catch (error) {
+    throw new UnAuthenticatedError('Authentication invalid');
+  }

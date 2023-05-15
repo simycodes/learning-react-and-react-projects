@@ -1,0 +1,11 @@
+The following security packages were used. After installing, use these packages as middleware and they will do their security code processes.
+
+- [helmet](https://www.npmjs.com/package/helmet)
+  Helmet helps you secure your Express apps by setting various HTTP headers.
+- [xss-clean](https://www.npmjs.com/package/xss-clean)
+  Node.js Connect middleware to sanitize user input coming from POST body, GET queries, and url params.
+- [express-mongo-sanitize](https://www.npmjs.com/package/express-mongo-sanitize)
+  Sanitizes user-supplied data to prevent MongoDB Operator Injection.
+  (prevent unauthorized changes on db with incoming user db operator put in the incoming data)
+- [express-rate-limit](https://www.npmjs.com/package/express-rate-limit)
+  Basic rate-limiting middleware for Express.

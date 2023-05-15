@@ -1,0 +1,24 @@
+build-client command in the server json, will be used to build the react app from the server side.This will also ve used in the hosting process of the application.
+
+Using this script will make it ready for production(deploying/hosting), this will command will also be run on the server hosting the application.Running the build script makes APP READY TO BE DEPLOYED AND CREATES A build FOLDER THAT CONTAINS APP STATIC FILES THAT CAN BE USED IN DEPLOYING THE APP.
+
+"build-client": "cd client && npm run build",
+
+In package.json file of the server app
+"scripts": {
+    "build-client": "cd client && npm run build",
+    "server": "nodemon server --ignore client",
+    "client": "npm start --prefix client",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \" npm run client\""
+  },
+
+
+MESSAGE GIVEN OUT AFTER RUNNING THE BUILD SCRIPT - APP BECOMES READY TO BE DEPLOYED AND CREATES A build FOLDER THAT CONTAINS APP STATIC FILES THAT CAN BE USED IN DEPLOYING THE APP.
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+Find out more about deployment here:
+
+  https://cra.link/deployment

@@ -1,0 +1,45 @@
+Middleware are methods/functions that are executed when requests are send to
+the server
+
+Each method has access to the req and res objects
+
+Middle methods are widely used to facilitate the functionings of many
+express applications
+
+middles sits in between the req and the res
+//  req => middleware => res
+
+
+Example middleware function
+
+const logger = (req, res, next) => {
+  const method = req.method
+  const url = req.url
+  const time = new Date().getFullYear()
+  console.log(method, url, time)
+  next();
+}
+
+Calling middleware
+
+app.get('/', logger, (req, res) => { 
+  res.send('Home')
+})
+
+--next help pass the program running process from logger middleware to the other 
+methods get method
+--always put next() at end of every middleware method unless u ending the
+middleware with message being sent to the website such as res.send('About')
+
+//passing two middleaware functions
+app.get('/api/items', [logger,authorize],(req, res) => {
+  console.log(req.user)
+  res.send('Items')
+})
+
+
+The middleware in node.js is a function that will have all the access for requesting an object, responding to an 
+object, and moving to the next middleware function in the application request-response cycle. This function can be
+ used for modifying the req and res objects for tasks like adding response headers, parsing requesting bodies, and 
+so on.
+

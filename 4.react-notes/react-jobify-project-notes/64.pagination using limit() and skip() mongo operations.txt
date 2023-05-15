@@ -1,0 +1,18 @@
+skip() is used to skip a given number of records returned from the database (as a way of filtering and adding pagination functionality), just before sending data to the front end.
+ILLUSTRACTION
+skip(1) : This will skip the first document returned from the database.
+
+limit() is used to limit the number of to get and display to the front end.So initialy decide how many number of
+jobs to skip and then limit the amout of jobs to get and eventually display to the frontend.
+ 
+
+ BASIC SETUP EXAMPLE 
+
+ let result = Job.find(queryObject);
+
+// PAGINATION FUNCTIONALITY
+  const limitNumberOfJobs = 10;
+  const numberOfJobsToSkip = 1;
+
+  result = result.skip(numberOfJobsToSkip).limit(limitNumberOfJobs)
+

@@ -1,0 +1,26 @@
+express.static() middleware is used on the server (on the api) to be able to connecct to the react app that is ready for deployment(already run the build script in react app, and build folder has been created).
+
+express.static() server up the react app (using the build folder) as a public asset to the server, hence it being accessed by the server and displayed on the browser.
+
+ILLUSTRATION
+
+in server.js file
+
+
+// IMPORTS BELOW HELP IN DEPLOYING THE REACT APP(HELP USE THE REACT BUILD FOLDER)
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+// CREATE THE __dirname, AS ES6 HAS NO IN BUILT FOR THIS WHEN USED ON BACKEND
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// USE THE express.static() MIDDLE TO CONNECT REACT APP USING THE build FOLDER
+app.use(express.static(path.resolve(__dirname, './client/build')));
+
+// DIRECT ALL GET REQUESTS TO THE REACT FRONT END UP (index.html in client) - CHECK 
+// THIS AFTER ALL THE API OWN DEFINED ROUTES(AFTER TRYING THE API MAIN TWO ROUTES ABOVE)
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
+
